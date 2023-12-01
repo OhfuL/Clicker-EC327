@@ -40,11 +40,15 @@ public class Shop extends Activity {
         buy1.setText("" + String.format("%.2f", costs[0]));
         buy2.setText("" + String.format("%.2f", costs[1]));
 
-        buy1.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener buyButtonClickListener = new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 handleBuyButtonClick(v);
             }
-        });
+        };
+
+        buy1.setOnClickListener(buyButtonClickListener);
+        buy2.setOnClickListener(buyButtonClickListener);
 
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
