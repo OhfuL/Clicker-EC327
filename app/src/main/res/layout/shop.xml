@@ -4,6 +4,28 @@
     android:layout_height="match_parent"
     android:padding="10dp" >
 
+    <TextView
+        android:id="@+id/building3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buy1"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:text="Upgrade 2 (0x) "
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/building"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buy1"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:text="Upgrade 2 (0x) "
+        android:textSize="20dp" />
+
     <Button
         android:id="@+id/back"
         android:layout_width="wrap_content"
@@ -21,7 +43,7 @@
         android:textSize="20dp"/>
 
     <TextView
-        android:id="@+id/name1"
+        android:id="@+id/building1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -42,7 +64,7 @@
         android:textSize="20dp" />
 
     <TextView
-        android:id="@+id/name2"
+        android:id="@+id/building2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -60,17 +82,6 @@
         android:text="100"
         android:layout_alignParentRight="true"
         android:layout_below="@id/buy1"
-        android:textSize="20dp" />
-
-    <TextView
-        android:id="@+id/name3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="BU Student (0x) "
-        android:layout_alignParentLeft="true"
-        android:padding="10dp"
-        android:layout_below="@id/name2"
         android:textSize="20dp" />
 
     <Button
