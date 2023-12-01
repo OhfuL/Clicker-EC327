@@ -62,8 +62,8 @@ public class Shop extends Activity {
         points.setText(String.format("%.2f", score) + " Dining Points");
         building1.setText("Upgrade 1 (" + levels[0] + "x)");
         building2.setText("Upgrade 2 (" + levels[1] + "x)");
-        buy_building1.setText("" + String.format("%.2f", costs[0]));
-        buy_building2.setText("" + String.format("%.2f", costs[1]));
+        buy_building1.setText("" + String.format("%.2f", buildingCosts[0]));
+        buy_building2.setText("" + String.format("%.2f", buildingCosts[1]));
 
         View.OnClickListener buyButtonClickListener = new View.OnClickListener() {
             @Override
@@ -90,8 +90,8 @@ public class Shop extends Activity {
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra(MainActivity.TAG_SCORE, score);
                 resultIntent.putExtra(MainActivity.TAG_MULTIPLIER, multiplier);
-                resultIntent.putExtra(MainActivity.TAG_COSTS, costs);
-                resultIntent.putExtra(MainActivity.TAG_LEVELS, levels);
+                resultIntent.putExtra(MainActivity.TAG_BUILDING_COSTS, buildingCosts);
+                resultIntent.putExtra(MainActivity.TAG_BUILDING_LEVELS, buildingLevels);
                 setResult(Activity.RESULT_OK, resultIntent);
                 finish();
             }
@@ -122,25 +122,25 @@ public class Shop extends Activity {
         } else if (v == buy_building11) {
             handlebuy_building11();
         }
+    }
 
-        private void handlebuy_building1() {
-        }
+    private void handlebuy_building1() {
         // Check if the player has enough score to make the purchase
-        if (score >= costs[0]) {
+        if (score >= buildingCosts[0]) {
             // Deduct the cost from the score
-            score -= costs[0];
+            score -= buildingCosts[0];
             // Update the text view to display the updated score
             points.setText(String.format("%.2f", score) + " Dining Points");
             // Increase the multiplier by 0.1
             multiplier += 0.1;
             // Increase the cost of the item by 15%
-            costs[0] *= 1.15;
+            buildingCosts[0] *= 1.15;
             // Update the text on the button to display the new cost
-            buy_building1.setText("" + String.format("%.2f", costs[0]));
+            buy_building1.setText("" + String.format("%.2f", buildingCosts[0]));
             // Increase the level of the upgrade by 1
-            levels[0]++;
+            buildingLevels[0]++;
             // Update the text on the label to display the new level
-            building1.setText("Upgrade 1 (" + levels[0] + "x)");
+            building1.setText("Upgrade 1 (" + buildingLevels[0] + "x)");
         } else {
             // Display a toast message indicating that the player doesn't have enough score
             Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
@@ -148,148 +148,143 @@ public class Shop extends Activity {
     }
 
     private void handlebuy_building2() {
-        if (score >= costs[1]) {
-            score -= costs[1];
+        if (score >= buildingCosts[1]) {
+            score -= buildingCosts[1];
             points.setText(String.format("%.2f", score) + " Dining Points");
             multiplier += 0.1;
-            costs[1] *= 1.15;
-            buy_building2.setText("" + String.format("%.2f", costs[1]));
-            levels[1]++;
-            building2.setText("Upgrade 2 (" + levels[1] + "x)");
+            buildingCosts[1] *= 1.15;
+            buy_building2.setText("" + String.format("%.2f", buildingCosts[1]));
+            buildingLevels[1]++;
+            building2.setText("Upgrade 2 (" + buildingLevels[1] + "x)");
         } else {
             Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void handlebuy_building3() {
-        if (score >= costs[2]) {
-            score -= costs[2];
+        if (score >= buildingCosts[2]) {
+            score -= buildingCosts[2];
             points.setText(String.format("%.2f", score) + " Dining Points");
             multiplier += 0.1;
-            costs[2] *= 1.15;
-            buy_building3.setText("" + String.format("%.2f", costs[2]));
-            levels[2]++;
-            building3.setText("Upgrade 3 (" + levels[2] + "x)");
+            buildingCosts[2] *= 1.15;
+            buy_building3.setText("" + String.format("%.2f", buildingCosts[2]));
+            buildingLevels[2]++;
+            building3.setText("Upgrade 3 (" + buildingLevels[2] + "x)");
         } else {
             Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
         }
-
-        private void handlebuy_building4() {
-            if (score >= costs[3]) {
-                score -= costs[3];
-                points.setText(String.format("%.2f", score) + " Dining Points");
-                multiplier += 0.1;
-                costs[3] *= 1.15;
-                buy_building4.setText("" + String.format("%.2f", costs[3]));
-                levels[3]++;
-                building4.setText("Upgrade 4 (" + levels[3] + "x)");
-            } else {
-                Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        private void handlebuy_building5() {
-            if (score >= costs[4]) {
-                score -= costs[4];
-                points.setText(String.format("%.2f", score) + " Dining Points");
-                multiplier += 0.1;
-                costs[4] *= 1.15;
-                buy_building5.setText("" + String.format("%.2f", costs[4]));
-                levels[4]++;
-                building5.setText("Upgrade 5 (" + levels[4] + "x)");
-            } else {
-                Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        private void handlebuy_building6() {
-            if (score >= costs[5]) {
-                score -= costs[5];
-                points.setText(String.format("%.2f", score) + " Dining Points");
-                multiplier += 0.1;
-                costs[5] *= 1.15;
-                buy_building6.setText("" + String.format("%.2f", costs[5]));
-                levels[5]++;
-                building6.setText("Upgrade 6 (" + levels[5] + "x)");
-            } else {
-                Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        private void handlebuy_building7() {
-            if (score >= costs[6]) {
-                score -= costs[6];
-                points.setText(String.format("%.2f", score) + " Dining Points");
-                multiplier += 0.1;
-                costs[6] *= 1.15;
-                buy_building7.setText("" + String.format("%.2f", costs[6]));
-                levels[6]++;
-                building7.setText("Upgrade 7 (" + levels[6] + "x)");
-            } else {
-                Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        private void handlebuy_building8() {
-            if (score >= costs[7]) {
-                score -= costs[7];
-                points.setText(String.format("%.2f", score) + " Dining Points");
-                multiplier += 0.1;
-                costs[7] *= 1.15;
-                buy_building8.setText("" + String.format("%.2f", costs[7]));
-                levels[7]++;
-                buidling8.setText("Upgrade 8 (" + levels[7] + "x)");
-            } else {
-                Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        private void handlebuy_building9() {
-            if (score >= costs[8]) {
-                score -= costs[8];
-                points.setText(String.format("%.2f", score) + " Dining Points");
-                multiplier += 0.1;
-                costs[8] *= 1.15;
-                buy_building9.setText("" + String.format("%.2f", costs[8]));
-                levels[8]++;
-                building9.setText("Upgrade 9 (" + levels[8] + "x)");
-            } else {
-                Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
-            }
-        }
-        private void handlebuy_building10() {
-            if (score >= costs[9]) {
-                score -= costs[9];
-                points.setText(String.format("%.2f", score) + " Dining Points");
-                multiplier += 0.1;
-                costs[9] *= 1.15;
-                buy_building10.setText("" + String.format("%.2f", costs[9]));
-                levels[9]++;
-                buidling10.setText("Upgrade 10 (" + levels[9] + "x)");
-            } else {
-                Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        private void handlebuy_building11() {
-            if (score >= costs[10]) {
-                score -= costs[10];
-                points.setText(String.format("%.2f", score) + " Dining Points");
-                multiplier += 0.1;
-                costs[10] *= 1.15;
-                buy_building11.setText("" + String.format("%.2f", costs[10]));
-                levels[10]++;
-                buildinding11.setText("Upgrade 11 (" + levels[10] + "x)");
-            } else {
-                Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-
     }
 
+    private void handlebuy_building4() {
+        if (score >= buildingCosts[3]) {
+            score -= buildingCosts[3];
+            points.setText(String.format("%.2f", score) + " Dining Points");
+            multiplier += 0.1;
+            buildingCosts[3] *= 1.15;
+            buy_building4.setText("" + String.format("%.2f", buildingCosts[3]));
+            buildingLevels[3]++;
+            building4.setText("Upgrade 4 (" + buildingLevels[3] + "x)");
+        } else {
+            Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    private void handlebuy_building5() {
+        if (score >= buildingCosts[4]) {
+            score -= buildingCosts[4];
+            points.setText(String.format("%.2f", score) + " Dining Points");
+            multiplier += 0.1;
+            buildingCosts[4] *= 1.15;
+            buy_building5.setText("" + String.format("%.2f", buildingCosts[4]));
+            buildingLevels[4]++;
+            building5.setText("Upgrade 5 (" + buildingLevels[4] + "x)");
+        } else {
+            Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    private void handlebuy_building6() {
+        if (score >= buildingCosts[5]) {
+            score -= buildingCosts[5];
+            points.setText(String.format("%.2f", score) + " Dining Points");
+            multiplier += 0.1;
+            buildingCosts[5] *= 1.15;
+            buy_building6.setText("" + String.format("%.2f", buildingCosts[5]));
+            buildingLevels[5]++;
+            building6.setText("Upgrade 6 (" + buildingLevels[5] + "x)");
+        } else {
+            Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    private void handlebuy_building7() {
+        if (score >= buildingCosts[6]) {
+            score -= buildingCosts[6];
+            points.setText(String.format("%.2f", score) + " Dining Points");
+            multiplier += 0.1;
+            buildingCosts[6] *= 1.15;
+            buy_building7.setText("" + String.format("%.2f", buildingCosts[6]));
+            buildingLevels[6]++;
+            building7.setText("Upgrade 7 (" + buildingLevels[6] + "x)");
+        } else {
+            Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void handlebuy_building8() {
+        if (score >= buildingCosts[7]) {
+            score -= buildingCosts[7];
+            points.setText(String.format("%.2f", score) + " Dining Points");
+            multiplier += 0.1;
+            buildingCosts[7] *= 1.15;
+            buy_building8.setText("" + String.format("%.2f", buildingCosts[7]));
+            buildingLevels[7]++;
+            buidling8.setText("Upgrade 8 (" + buildingLevels[7] + "x)");
+        } else {
+            Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void handlebuy_building9() {
+        if (score >= buildingCosts[8]) {
+            score -= buildingCosts[8];
+            points.setText(String.format("%.2f", score) + " Dining Points");
+            multiplier += 0.1;
+            buildingCosts[8] *= 1.15;
+            buy_building9.setText("" + String.format("%.2f", buildingCosts[8]));
+            buildingLevels[8]++;
+            building9.setText("Upgrade 9 (" + buildingLevels[8] + "x)");
+        } else {
+            Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void handlebuy_building10() {
+        if (score >= buildingCosts[9]) {
+            score -= buildingCosts[9];
+            points.setText(String.format("%.2f", score) + " Dining Points");
+            multiplier += 0.1;
+            buildingCosts[9] *= 1.15;
+            buy_building10.setText("" + String.format("%.2f", buildingCosts[9]));
+            buildingLevels[9]++;
+            buidling10.setText("Upgrade 10 (" + buildingLevels[9] + "x)");
+        } else {
+            Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void handlebuy_building11() {
+        if (score >= buildingCosts[10]) {
+            score -= buildingCosts[10];
+            points.setText(String.format("%.2f", score) + " Dining Points");
+            multiplier += 0.1;
+            buildingCosts[10] *= 1.15;
+            buy_building11.setText("" + String.format("%.2f", buildingCosts[10]));
+            buildingLevels[10]++;
+            buildinding11.setText("Upgrade 11 (" + buildingLevels[10] + "x)");
+        } else {
+            Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
 
