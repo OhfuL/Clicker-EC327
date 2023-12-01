@@ -6,14 +6,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Shop extends Activity {
 
-    private TextView name1, name2, points;
-    private Button back, buy1, buy2;
-    private double score, multiplier, cost;
+    private TextView name1, name2, name3, points;
+    private Button back, buy1, buy2, buy3;
+    private double score, multiplier;
     private double[] costs;
     private int[] levels;
+    private double[] buildingCosts;
+    private int[] buildingLevels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +25,12 @@ public class Shop extends Activity {
 
         name1 = findViewById(R.id.name1);
         name2 = findViewById(R.id.name2);
+        name3 = findViewById(R.id.name3);
         points = findViewById(R.id.points);
         back = findViewById(R.id.back);
         buy1 = findViewById(R.id.buy1);
         buy2 = findViewById(R.id.buy2);
+        buy3 = findViewById(R.id.buy3);
 
         // Retrieve data from the intent
         Intent intent = getIntent();
@@ -33,6 +38,8 @@ public class Shop extends Activity {
         multiplier = intent.getDoubleExtra(MainActivity.TAG_MULTIPLIER, 1.0);
         costs = intent.getDoubleArrayExtra(MainActivity.TAG_COSTS);
         levels = intent.getIntArrayExtra(MainActivity.TAG_LEVELS);
+        buildingCosts = intent.getDoubleArrayExtra(MainActivity.TAG_BUILDING_COSTS);
+        buildingLevels = intent.getIntArrayExtra(MainActivity.TAG_BUILDING_LEVELS);
 
         points.setText(String.format("%.2f", score) + " Dining Points");
         name1.setText("Upgrade 1 (" + levels[0] + "x)");
@@ -81,6 +88,8 @@ public class Shop extends Activity {
             buy1.setText("" + String.format("%.2f", costs[0]));
             levels[0]++;
             name1.setText("Upgrade 1 (" + levels[0] + "x)");
+        } else {
+            Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -93,6 +102,8 @@ public class Shop extends Activity {
             buy2.setText("" + String.format("%.2f", costs[1]));
             levels[1]++;
             name2.setText("Upgrade 2 (" + levels[1] + "x)");
+        } else {
+            Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
         }
     }
 }

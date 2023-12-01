@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:text="10 Dining Points"
+        android:text="10"
         android:layout_alignParentRight="true"
         android:layout_below="@id/back"
         android:textSize="20dp" />
@@ -57,9 +57,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:text="100 Dining Points"
+        android:text="100"
         android:layout_alignParentRight="true"
         android:layout_below="@id/buy1"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/name3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="BU Student (0x) "
+        android:layout_alignParentLeft="true"
+        android:padding="10dp"
+        android:layout_below="@id/name2"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/buy3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="15"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/buy2"
         android:textSize="20dp" />
 
 </RelativeLayout>
