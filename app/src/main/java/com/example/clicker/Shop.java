@@ -284,6 +284,7 @@ public class Shop extends Activity {
             }
         }
 
+
     }
 
 

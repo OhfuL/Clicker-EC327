@@ -110,7 +110,6 @@ public class MainActivity extends Activity {
         }
     }
 
-
     // Runnable for automatic score increment
     private Runnable autoClickTick = new Runnable() {
 
