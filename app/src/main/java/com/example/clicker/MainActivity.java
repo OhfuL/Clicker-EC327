@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.os.Handler;
 
@@ -18,16 +19,17 @@ public class MainActivity extends Activity {
     public static final String TAG_BUILDING_COSTS = "buildingcosts";
     public static final int REQUEST_CODE_SHOP = 1;
     private TextView title, points;
-    private Button clickbutton, shop;
+    private Button  shop;
+    private ImageButton clickbutton;
     private Handler clickHandler;
     private final int TIME_INTERVAL_MILLIS = 1000;
     double score = 0;
     double multiplier = 1.0;
     double[] costs = {10, 100};
-    int[] levels = {0, 0};
+    int[] levels = {0, 0, 0};
     int[] buildingLevels = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     double[] buildingCosts = {15, 100, 1100, 12000, 130000, 1400000, 20000000, 330000000, 5100000000d, 75000000000d};
-    final double[] buildingRates = {0.3, 1, 8, 47, 260, 1400, 7800, 44000, 260000, 1600000};
+    final double[] buildingRates = {0.1, 1, 8, 47, 260, 1400, 7800, 44000, 260000, 1600000};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class MainActivity extends Activity {
         title = (TextView)findViewById(R.id.title);
         points = (TextView)findViewById(R.id.points);
 
-        clickbutton = (Button)findViewById(R.id.clickbutton);
+        clickbutton = (ImageButton)findViewById(R.id.clickbutton);
         shop = (Button)findViewById(R.id.shop);
 
         clickbutton.setEnabled(true);

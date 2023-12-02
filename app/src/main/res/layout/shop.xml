@@ -67,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="BU Student (0x) "
+        android:text="BU Students (0x) "
         android:layout_alignParentLeft="true"
         android:padding="10dp"
         android:layout_below="@id/name2"
@@ -83,4 +83,66 @@
         android:layout_below="@id/buy2"
         android:textSize="20dp" />
 
+    <TextView
+        android:id="@+id/name4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Warren Towers (0x) "
+        android:layout_alignParentLeft="true"
+        android:padding="10dp"
+        android:layout_below="@id/name3"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/buy4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="100"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/buy3"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/name5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="West Dorms (0x) "
+        android:layout_alignParentLeft="true"
+        android:padding="10dp"
+        android:layout_below="@id/name4"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/buy5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="1,100"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/buy4"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/name6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="1019 Comm Ave (0x) "
+        android:layout_alignParentLeft="true"
+        android:padding="10dp"
+        android:layout_below="@id/name5"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/buy6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="12,000"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/buy5"
+        android:textSize="20dp" />
 </RelativeLayout>
