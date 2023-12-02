@@ -46,12 +46,8 @@ public class Shop extends Activity {
         buyBuilding9 = findViewById(R.id.buyBuilding9);
         buyBuilding10 = findViewById(R.id.buyBuilding10);
 
-
         points = findViewById(R.id.points);
         back = findViewById(R.id.back);
-
-
-
 
         // Retrieve data from the intent
         Intent intent = getIntent();
@@ -65,16 +61,16 @@ public class Shop extends Activity {
         points.setText(String.format("%.2f", score) + " Dining Points");
 
         // Update the text on the buttons to display the current costs - NAMES OF THE BUILDINGS IN THE SHOP
-        building1.setText("Upgrade 1 (" + buildingLevels[0] + "x)");
-        building2.setText("Upgrade 2 (" + buildingLevels[1] + "x)");
-        building3.setText("Upgrade 3 (" + buildingLevels[2] + "x)");
-        building4.setText("Upgrade 4 (" + buildingLevels[3] + "x)");
-        building5.setText("Upgrade 5 (" + buildingLevels[4] + "x)");
-        building6.setText("Upgrade 6 (" + buildingLevels[5] + "x)");
-        building7.setText("Upgrade 7 (" + buildingLevels[6] + "x)");
-        building8.setText("Upgrade 8 (" + buildingLevels[7] + "x)");
-        building9.setText("Upgrade 9 (" + buildingLevels[8] + "x)");
-        building10.setText("Upgrade 10 (" + buildingLevels[9] + "x)");
+        building1.setText("BU Students (" + buildingLevels[0] + "x)");
+        building2.setText("Warren Towers (" + buildingLevels[1] + "x)");
+        building3.setText("West Dorms (" + buildingLevels[2] + "x)");
+        building4.setText("1019 Comm Ave (" + buildingLevels[3] + "x)");
+        building5.setText("Hojo (" + buildingLevels[4] + "x)");
+        building6.setText("Kilachand (" + buildingLevels[5] + "x)");
+        building7.setText("Myles Standish (" + buildingLevels[6] + "x)");
+        building8.setText("Stuvi 1 (" + buildingLevels[7] + "x)");
+        building9.setText("Stuvi 2 (" + buildingLevels[8] + "x)");
+        building10.setText("Off Campus (" + buildingLevels[9] + "x)");
 
         // Update the text on the buttons to display the current costs - COSTS OF THE BUILDINGS IN THE SHOP
         buyBuilding1.setText("" + String.format("%.2f", buildingCosts[0]));
@@ -160,7 +156,7 @@ public class Shop extends Activity {
             // Increase the level of the upgrade by 1
             buildingLevels[0]++;
             // Update the text on the label to display the new level
-            building1.setText("Upgrade 1 (" + buildingLevels[0] + "x)");
+            building1.setText("BU Students (" + buildingLevels[0] + "x)");
         } else {
             // Display a toast message indicating that the player doesn't have enough score
             Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
@@ -174,7 +170,7 @@ public class Shop extends Activity {
             buildingCosts[1] *= 1.15;
             buyBuilding2.setText("" + String.format("%.2f", buildingCosts[1]));
             buildingLevels[1]++;
-            building2.setText("Upgrade 2 (" + buildingLevels[1] + "x)");
+            building2.setText("Warren Towers (" + buildingLevels[1] + "x)");
         } else {
             Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
         }
@@ -187,7 +183,7 @@ public class Shop extends Activity {
             buildingCosts[2] *= 1.15;
             buyBuilding3.setText("" + String.format("%.2f", buildingCosts[2]));
             buildingLevels[2]++;
-            building3.setText("Upgrade 3 (" + buildingLevels[2] + "x)");
+            building3.setText("West Dorms (" + buildingLevels[2] + "x)");
         } else {
             Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
         }
@@ -200,7 +196,7 @@ public class Shop extends Activity {
             buildingCosts[3] *= 1.15;
             buyBuilding4.setText("" + String.format("%.2f", buildingCosts[3]));
             buildingLevels[3]++;
-            building4.setText("Upgrade 4 (" + buildingLevels[3] + "x)");
+            building4.setText("1019 Comm Ave (" + buildingLevels[3] + "x)");
         } else {
             Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
         }
@@ -213,7 +209,7 @@ public class Shop extends Activity {
             buildingCosts[4] *= 1.15;
             buyBuilding5.setText("" + String.format("%.2f", buildingCosts[4]));
             buildingLevels[4]++;
-            building5.setText("Upgrade 5 (" + buildingLevels[4] + "x)");
+            building5.setText("Hojo (" + buildingLevels[4] + "x)");
         } else {
             Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
         }
@@ -226,7 +222,7 @@ public class Shop extends Activity {
             buildingCosts[5] *= 1.15;
             buyBuilding6.setText("" + String.format("%.2f", buildingCosts[5]));
             buildingLevels[5]++;
-            building6.setText("Upgrade 6 (" + buildingLevels[5] + "x)");
+            building6.setText("Kilachand (" + buildingLevels[5] + "x)");
         } else {
             Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
         }
@@ -239,7 +235,7 @@ public class Shop extends Activity {
             buildingCosts[6] *= 1.15;
             buyBuilding7.setText("" + String.format("%.2f", buildingCosts[6]));
             buildingLevels[6]++;
-            building7.setText("Upgrade 7 (" + buildingLevels[6] + "x)");
+            building7.setText("Myles Standish (" + buildingLevels[6] + "x)");
         } else {
             Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
         }
@@ -252,7 +248,7 @@ public class Shop extends Activity {
             buildingCosts[7] *= 1.15;
             buyBuilding8.setText("" + String.format("%.2f", buildingCosts[7]));
             buildingLevels[7]++;
-            building8.setText("Upgrade 8 (" + buildingLevels[7] + "x)");
+            building8.setText("Stuvi 1 (" + buildingLevels[7] + "x)");
         } else {
             Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
         }
@@ -265,7 +261,7 @@ public class Shop extends Activity {
             buildingCosts[8] *= 1.15;
             buyBuilding9.setText("" + String.format("%.2f", buildingCosts[8]));
             buildingLevels[8]++;
-            building9.setText("Upgrade 9 (" + buildingLevels[8] + "x)");
+            building9.setText("Stuvi 2 (" + buildingLevels[8] + "x)");
         } else {
             Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
         }
@@ -278,7 +274,7 @@ public class Shop extends Activity {
             buildingCosts[9] *= 1.15;
             buyBuilding10.setText("" + String.format("%.2f", buildingCosts[9]));
             buildingLevels[9]++;
-            building10.setText("Upgrade 10 (" + buildingLevels[9] + "x)");
+            building10.setText("Off Campus (" + buildingLevels[9] + "x)");
         } else {
             Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
         }

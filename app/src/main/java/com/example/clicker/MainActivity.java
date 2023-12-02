@@ -18,18 +18,19 @@ public class MainActivity extends Activity {
     public static final String TAG_BUILDING_LEVELS = "buildinglevels";
     public static final String TAG_BUILDING_COSTS = "buildingcosts";
     public static final int REQUEST_CODE_SHOP = 1;
-    private TextView title, points;
+    private TextView title, points, clickMultiplier, clicksPerSecond;
     private Button  shop;
     private ImageButton clickbutton;
     private Handler clickHandler;
     private final int TIME_INTERVAL_MILLIS = 1000;
     double score = 0;
     double multiplier = 1.0;
+    double cps = 0;
     double[] costs = {10, 100};
     int[] levels = {0, 0, 0};
     int[] buildingLevels = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     double[] buildingCosts = {15, 100, 1100, 12000, 130000, 1400000, 20000000, 330000000, 5100000000d, 75000000000d};
-    final double[] buildingRates = {0.1, 1, 8, 47, 260, 1400, 7800, 44000, 260000, 1600000};
+    final double[] buildingRates = {0.3, 1, 8, 47, 260, 1400, 7800, 44000, 260000, 1600000};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,8 @@ public class MainActivity extends Activity {
 
         title = (TextView)findViewById(R.id.title);
         points = (TextView)findViewById(R.id.points);
+        clickMultiplier = (TextView)findViewById(R.id.clickMultiplier);
+        clicksPerSecond = (TextView)findViewById(R.id.clicksPerSecond);
 
         clickbutton = (ImageButton)findViewById(R.id.clickbutton);
         shop = (Button)findViewById(R.id.shop);
@@ -82,17 +85,22 @@ public class MainActivity extends Activity {
             buildingCosts = data.getDoubleArrayExtra(TAG_BUILDING_COSTS);
             buildingLevels = data.getIntArrayExtra(TAG_BUILDING_LEVELS);
 
+            cps = 0;
+            for (int i = 0; i < buildingRates.length; ++i) {
+                cps += buildingLevels[i] * buildingRates[i];
+            }
+
             // Update UI or perform any other actions with the updated data
             updateScore(score);
+            clickMultiplier.setText("Click Multiplier: " + String.format("%.2f", multiplier) + "x");
+            clicksPerSecond.setText("Clicks per Second: " + String.format("%.2f", cps));
         }
     }
 
     private Runnable autoClickTick = new Runnable() {
         @Override
         public void run() {
-            for (int i = 0; i < buildingLevels.length; ++i) {
-                score += buildingLevels[i] * buildingRates[i];
-            }
+            score += cps;
             updateScore(score);
             clickHandler.postDelayed(this, TIME_INTERVAL_MILLIS);
         }
