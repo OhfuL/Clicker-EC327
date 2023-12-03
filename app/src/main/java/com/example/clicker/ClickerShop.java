@@ -53,6 +53,7 @@ public class ClickerShop extends Activity {
         level = intent.getIntExtra(MainActivity.TAG_LEVEL, 0);
         multiplier = intent.getDoubleExtra(MainActivity.TAG_MULTIPLIER, 1);
 
+
         // Update the text on the buttons to display the current costs - NAMES OF THE BUILDING UPGRADES IN THE SHOP
         building1upgrade.setText("Students Multiplier (" + buildingUpgradeLevels[0] + "x)");
         building2upgrade.setText("Warren Multiplier (" + buildingUpgradeLevels[1] + "x)");
