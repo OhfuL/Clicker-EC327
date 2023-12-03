@@ -1,6 +1,7 @@
 package com.example.clicker;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
@@ -24,6 +25,7 @@ public class MainActivity extends Activity {
     private ImageButton clickbutton;
     private Handler clickHandler;
     private final int TIME_INTERVAL_MILLIS = 1000;
+    private MediaPlayer clickSoundPlayer;
     double score = 0;
     double multiplier = 1.0;
     double cps = 0;
@@ -45,7 +47,7 @@ public class MainActivity extends Activity {
         points = (TextView)findViewById(R.id.points);
         clickMultiplier = (TextView)findViewById(R.id.clickMultiplier);
         clicksPerSecond = (TextView)findViewById(R.id.clicksPerSecond);
-
+        clickSoundPlayer = MediaPlayer.create(this,R.raw.clicktone);
         clickbutton = (ImageButton)findViewById(R.id.clickbutton);
         shop = (Button)findViewById(R.id.shop);
         clickerShop = (Button)findViewById(R.id.clickerShop);
@@ -58,8 +60,17 @@ public class MainActivity extends Activity {
 
         clickbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                if (clickSoundPlayer.isPlaying()) {
+                    clickSoundPlayer.stop();
+                    clickSoundPlayer.release();
+                    clickSoundPlayer = MediaPlayer.create(MainActivity.this, R.raw.clicktone);
+                }
+
+                clickSoundPlayer.start();
                 score += multiplier;
                 updateScore(score);
+
             }
         });
 
