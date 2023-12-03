@@ -18,6 +18,8 @@ public class MainActivity extends Activity {
     public static final String TAG_LEVEL = "level";
     public static final String TAG_BUILDING_LEVELS = "buildinglevels";
     public static final String TAG_BUILDING_COSTS = "buildingcosts";
+    public static final String TAG_BUILDING_UPGRADE_COSTS = "buildingupgradecosts";
+    public static final String TAG_BUILDING_UPGRADE_LEVELS = "buildingupgradelevels";
     public static final int REQUEST_CODE_SHOP = 1;
     public static final int REQUEST_CODE_CLICKER_SHOP = 2;
     private TextView title, points, clickMultiplier, clicksPerSecond;
@@ -91,7 +93,9 @@ public class MainActivity extends Activity {
                 clickerShopActivity.putExtra(TAG_COST, cost);
                 clickerShopActivity.putExtra(TAG_MULTIPLIER, multiplier);
                 clickerShopActivity.putExtra(TAG_LEVEL, level);
-                startActivityForResult(clickerShopActivity, REQUEST_CODE_SHOP);
+                clickerShopActivity.putExtra(TAG_BUILDING_UPGRADE_COSTS, buildingUpgradeCosts);
+                clickerShopActivity.putExtra(TAG_BUILDING_UPGRADE_LEVELS, buildingUpgradeLevels);
+                startActivityForResult(clickerShopActivity, REQUEST_CODE_CLICKER_SHOP);
             }
         });
     }
@@ -119,6 +123,8 @@ public class MainActivity extends Activity {
             cost = data.getDoubleExtra(TAG_COST, 100);
             level = data.getIntExtra(TAG_LEVEL, 0);
             multiplier = data.getDoubleExtra(TAG_MULTIPLIER, 1);
+            buildingUpgradeCosts = data.getDoubleArrayExtra(TAG_BUILDING_UPGRADE_COSTS);
+            buildingUpgradeLevels = data.getIntArrayExtra(TAG_BUILDING_UPGRADE_LEVELS);
 
             updateScore(score);
             clickMultiplier.setText("Click Multiplier: " + String.format("%.2f", multiplier) + "x");
