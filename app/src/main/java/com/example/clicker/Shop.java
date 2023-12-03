@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -113,6 +114,7 @@ public class Shop extends Activity {
                 finish();
             }
         });
+
     }
 
     private void handleBuyButtonClick(View v) {
@@ -276,4 +278,5 @@ public class Shop extends Activity {
             Toast.makeText(Shop.this, "Not enough Dining Points!", Toast.LENGTH_SHORT).show();
         }
     }
+
 }
