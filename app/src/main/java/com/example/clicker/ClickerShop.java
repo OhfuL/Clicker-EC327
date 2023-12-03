@@ -15,6 +15,9 @@ public class ClickerShop extends Activity {
     private double score, multiplier;
     private double cost;
     private int level;
+    private double[] buildingUpgradeCosts;
+    private double[] buildingUpgradeLevels;
+    private int[] levelNeeded;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,69 +80,102 @@ public class ClickerShop extends Activity {
         buy8Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[7]));
         buy9Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[8]));
         buy10Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[9]));
+
+
+        View.OnClickListener buyButtonClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleBuyButtonClick(v);
+            }
+        };
+
+        buy1Upgrade.setOnClickListener(buyButtonClickListener);
+        buy2Upgrade.setOnClickListener(buyButtonClickListener);
+        buy3Upgrade.setOnClickListener(buyButtonClickListener);
+        buy4Upgrade.setOnClickListener(buyButtonClickListener);
+        buy5Upgrade.setOnClickListener(buyButtonClickListener);
+        buy6Upgrade.setOnClickListener(buyButtonClickListener);
+        buy7Upgrade.setOnClickListener(buyButtonClickListener);
+        buy8Upgrade.setOnClickListener(buyButtonClickListener);
+        buy9Upgrade.setOnClickListener(buyButtonClickListener);
+        buy10Upgrade.setOnClickListener(buyButtonClickListener);
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra(MainActivity.TAG_SCORE, score);
+                intent.putExtra(MainActivity.TAG_MULTIPLIER, multiplier);
+                intent.putExtra(MainActivity.TAG_COST, cost);
+                intent.putExtra(MainActivity.TAG_LEVEL, level);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
     }
 
-    View.OnClickListener buyButtonClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            handleBuyButtonClick(v);
-        }
-    };
-
-    buy1Upgrade.setOnClickListener(buyButtonClickListener);
-    buy2Upgrade.setOnClickListener(buyButtonClickListener);
-    buy3Upgrade.setOnClickListener(buyButtonClickListener);
-    buy4Upgrade.setOnClickListener(buyButtonClickListener);
-    buy5Upgrade.setOnClickListener(buyButtonClickListener);
-    buy6Upgrade.setOnClickListener(buyButtonClickListener);
-    buy7Upgrade.setOnClickListener(buyButtonClickListener);
-    buy8Upgrade.setOnClickListener(buyButtonClickListener);
-    buy9Upgrade.setOnClickListener(buyButtonClickListener);
-    buy10Upgrade.setOnClickListener(buyButtonClickListener);
-
-    back.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent();
-            intent.putExtra(MainActivity.TAG_SCORE, score);
-            intent.putExtra(MainActivity.TAG_MULTIPLIER, multiplier);
-            intent.putExtra(MainActivity.TAG_COST, cost);
-            intent.putExtra(MainActivity.TAG_LEVEL, level);
-            setResult(RESULT_OK, intent);
-            finish();
-        }
-    });
-}
-
-    private void handleBuyButtonClick(View v){
-        if (v== building1Upgrade){
+    private void handleBuyButtonClick(View v) {
+        if (v == building1Upgrade) {
             handleBuyButtonClick1();
-        } else if (v == building2Upgrade){
+        } else if (v == building2Upgrade) {
             handleBuyButtonClick2();
-        } else if (v == building3Upgrade){
+        } else if (v == building3Upgrade) {
             handleBuyButtonClick3();
-        } else if (v == building4Upgrade){
+        } else if (v == building4Upgrade) {
             handleBuyButtonClick4();
-        } else if (v == building5Upgrade){
+        } else if (v == building5Upgrade) {
             handleBuyButtonClick5();
-        } else if (v == building6Upgrade){
+        } else if (v == building6Upgrade) {
             handleBuyButtonClick6();
-        } else if (v == building7Upgrade){
+        } else if (v == building7Upgrade) {
             handleBuyButtonClick7();
-        } else if (v == building8Upgrade){
+        } else if (v == building8Upgrade) {
             handleBuyButtonClick8();
-        } else if (v == building9Upgrade){
+        } else if (v == building9Upgrade) {
             handleBuyButtonClick9();
-        } else if (v == building10Upgrade){
+        } else if (v == building10Upgrade) {
             handleBuyButtonClick10();
         }
+    }
 
-        private void handleBuyButtonClick1(){
+    //physical clicking upgrade
+    private void handleBuyButtonClick1(){
             if (score >= buildingUpgradeCosts[0]){
                 score -= buildingUpgradeCosts[0];
                 multiplier += buildingUpgradeLevels[0];
-                buildingUpgradeCosts[0] *= 1.5;
                 buildingUpgradeLevels[0] += 1;
+
+                // Update building price based on upgrade level
+                if (buildingUpgradeLevels[0] == 1) {
+                    buildingUpgradeCosts[0] = 500;
+                } else if (buildingUpgradeLevels[0] == 2) {
+                    buildingUpgradeCosts[0] = 10000;
+                } else if (buildingUpgradeLevels[0] == 3) {
+                    buildingUpgradeCosts[0] = 100000;
+                } else if (buildingUpgradeLevels[0] == 4) {
+                    buildingUpgradeCosts[0] = 10000000;
+                } else if (buildingUpgradeLevels[0] == 5) {
+                    buildingUpgradeCosts[0] = 100000000;
+                } else if (buildingUpgradeLevels[0] == 6) {
+                    buildingUpgradeCosts[0] = 1000000000;
+                } else if (buildingUpgradeLevels[0] == 7) {
+                    buildingUpgradeCosts[0] = 10000000000;
+                } else if (buildingUpgradeLevels[0] == 8) {
+                    buildingUpgradeCosts[0] = 100000000000;
+                }
+
+                // Update multiplier based on upgrade level
+                if (buildingUpgradeLevels[0] <= 3) {
+                    multiplier *= 2;
+                } else if (buildingUpgradeLevels[0] == 4) {
+                    multiplier *= 10;
+                } else if (buildingUpgradeLevels[0] == 5) {
+                    multiplier *= 10;
+                } else if (buildingUpgradeLevels[0] >= 6 && buildingUpgradeLevels[0] <= 8) {
+                    multiplier *= 20;
+                }
+
                 building1Upgrade.setText("Students Multiplier (" + buildingUpgradeLevels[0] + "x)");
                 buy1Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[0]));
                 points.setText("" + String.format("%.2f", score));
@@ -149,8 +185,8 @@ public class ClickerShop extends Activity {
             }
         }
 
-        private void handleBuyButtonClick2(){
-            if (score >= buildingUpgradeCosts[1]){
+        private void handleBuyButtonClick2 () {
+            if (score >= buildingUpgradeCosts[1]) {
                 score -= buildingUpgradeCosts[1];
                 multiplier += buildingUpgradeLevels[1];
                 buildingUpgradeCosts[1] *= 1.5;
@@ -164,8 +200,8 @@ public class ClickerShop extends Activity {
             }
         }
 
-        private void handleBuyButtonClick3(){
-            if (score >= buildingUpgradeCosts[2]){
+        private void handleBuyButtonClick3 () {
+            if (score >= buildingUpgradeCosts[2]) {
                 score -= buildingUpgradeCosts[2];
                 multiplier += buildingUpgradeLevels[2];
                 buildingUpgradeCosts[2] *= 1.5;
@@ -179,8 +215,8 @@ public class ClickerShop extends Activity {
             }
         }
 
-        private void handleBuyButtonClick4(){
-            if (score >= buildingUpgradeCosts[3]){
+        private void handleBuyButtonClick4 () {
+            if (score >= buildingUpgradeCosts[3]) {
                 score -= buildingUpgradeCosts[3];
                 multiplier += buildingUpgradeLevels[3];
                 buildingUpgradeCosts[3] *= 1.5;
@@ -194,8 +230,8 @@ public class ClickerShop extends Activity {
             }
         }
 
-        private void handleBuyButtonClick5(){
-            if (score >= buildingUpgradeCosts[4]){
+        private void handleBuyButtonClick5 () {
+            if (score >= buildingUpgradeCosts[4]) {
                 score -= buildingUpgradeCosts[4];
                 multiplier += buildingUpgradeLevels[4];
                 buildingUpgradeCosts[4] *= 1.5;
@@ -209,8 +245,8 @@ public class ClickerShop extends Activity {
             }
         }
 
-        private void handleBuyButtonClick6(){
-            if (score >= buildingUpgradeCosts[5]){
+        private void handleBuyButtonClick6 () {
+            if (score >= buildingUpgradeCosts[5]) {
                 score -= buildingUpgradeCosts[5];
                 multiplier += buildingUpgradeLevels[5];
                 buildingUpgradeCosts[5] *= 1.5;
@@ -224,8 +260,8 @@ public class ClickerShop extends Activity {
             }
         }
 
-        private void handleBuyButtonClick7(){
-            if (score >= buildingUpgradeCosts[6]){
+        private void handleBuyButtonClick7 () {
+            if (score >= buildingUpgradeCosts[6]) {
                 score -= buildingUpgradeCosts[6];
                 multiplier += buildingUpgradeLevels[6];
                 buildingUpgradeCosts[6] *= 1.5;
@@ -239,8 +275,8 @@ public class ClickerShop extends Activity {
             }
         }
 
-        private void handleBuyButtonClick8(){
-            if (score >= buildingUpgradeCosts[7]){
+        private void handleBuyButtonClick8 () {
+            if (score >= buildingUpgradeCosts[7]) {
                 score -= buildingUpgradeCosts[7];
                 multiplier += buildingUpgradeLevels[7];
                 buildingUpgradeCosts[7] *= 1.5;
@@ -254,8 +290,8 @@ public class ClickerShop extends Activity {
             }
         }
 
-        private void handleBuyButtonClick9(){
-            if (score >= buildingUpgradeCosts[8]){
+        private void handleBuyButtonClick9 () {
+            if (score >= buildingUpgradeCosts[8]) {
                 score -= buildingUpgradeCosts[8];
                 multiplier += buildingUpgradeLevels[8];
                 buildingUpgradeCosts[8] *= 1.5;
@@ -269,8 +305,8 @@ public class ClickerShop extends Activity {
             }
         }
 
-        private void handleBuyButtonClick10(){
-            if (score >= buildingUpgradeCosts[9]){
+        private void handleBuyButtonClick10 () {
+            if (score >= buildingUpgradeCosts[9]) {
                 score -= buildingUpgradeCosts[9];
                 multiplier += buildingUpgradeLevels[9];
                 buildingUpgradeCosts[9] *= 1.5;
@@ -285,5 +321,5 @@ public class ClickerShop extends Activity {
         }
 
 
-
     }
+}

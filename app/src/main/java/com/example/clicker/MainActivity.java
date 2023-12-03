@@ -36,10 +36,11 @@ public class MainActivity extends Activity {
     int[] buildingLevels = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     int[] buildingUpgradeLevels = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     // FIX THESE VALUES ( BUILDING UPGRADE COSTS )
-    double[] buildingUpgradeCosts = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    double[] buildingUpgradeCosts = {100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     double[] buildingCosts = {15, 100, 1100, 12000, 130000, 1400000, 20000000, 330000000, 5100000000d, 75000000000d};
     final double[] buildingRates = {0.3, 1, 8, 47, 260, 1400, 7800, 44000, 260000, 1600000};
- 
+    private int[] levelNeeded = {1, 1, 10, 25, 50, 100, 150, 200};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
