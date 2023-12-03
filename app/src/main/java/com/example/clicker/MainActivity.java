@@ -12,9 +12,9 @@ import android.os.Handler;
 public class MainActivity extends Activity {
 
     public static final String TAG_SCORE = "score";
-    public static final String TAG_COSTS = "costs";
+    public static final String TAG_COST = "cost";
     public static final String TAG_MULTIPLIER = "multiplier";
-    public static final String TAG_LEVELS = "levels";
+    public static final String TAG_LEVEL = "level";
     public static final String TAG_BUILDING_LEVELS = "buildinglevels";
     public static final String TAG_BUILDING_COSTS = "buildingcosts";
     public static final int REQUEST_CODE_SHOP = 1;
@@ -27,9 +27,12 @@ public class MainActivity extends Activity {
     double score = 0;
     double multiplier = 1.0;
     double cps = 0;
-    double[] costs = {10, 100};
-    int[] levels = {0, 0, 0};
+    double cost = 100;
+    int level = 0;
     int[] buildingLevels = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int[] buildingUpgradeLevels = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    // FIX THESE VALUES ( BUILDING UPGRADE COSTS )
+    double[] buildingUpgradeCosts = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     double[] buildingCosts = {15, 100, 1100, 12000, 130000, 1400000, 20000000, 330000000, 5100000000d, 75000000000d};
     final double[] buildingRates = {0.3, 1, 8, 47, 260, 1400, 7800, 44000, 260000, 1600000};
 
@@ -74,9 +77,9 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Intent clickerShopActivity = new Intent(MainActivity.this, ClickerShop.class);
                 clickerShopActivity.putExtra(TAG_SCORE, score);
-                clickerShopActivity.putExtra(TAG_COSTS, costs);
+                clickerShopActivity.putExtra(TAG_COST, cost);
                 clickerShopActivity.putExtra(TAG_MULTIPLIER, multiplier);
-                clickerShopActivity.putExtra(TAG_LEVELS, levels);
+                clickerShopActivity.putExtra(TAG_LEVEL, level);
                 startActivityForResult(clickerShopActivity, REQUEST_CODE_SHOP);
             }
         });
@@ -102,8 +105,8 @@ public class MainActivity extends Activity {
             clicksPerSecond.setText("Clicks per Second: " + String.format("%.2f", cps));
         } else if (requestCode == REQUEST_CODE_CLICKER_SHOP && resultCode == Activity.RESULT_OK) {
             score = data.getDoubleExtra(TAG_SCORE, 0);
-            costs = data.getDoubleArrayExtra(TAG_COSTS);
-            levels = data.getIntArrayExtra(TAG_LEVELS);
+            cost = data.getDoubleExtra(TAG_COST, 100);
+            level = data.getIntExtra(TAG_LEVEL, 0);
             multiplier = data.getDoubleExtra(TAG_MULTIPLIER, 1);
 
             updateScore(score);

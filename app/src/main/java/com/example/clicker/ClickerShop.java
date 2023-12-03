@@ -22,6 +22,7 @@ public class ClickerShop extends Activity {
 
         points = findViewById(R.id.points);
         clickMultiplier = findViewById(R.id.clickMultiplier);
+        back = findViewById(R.id.back);
         building1Upgrade = findViewById(R.id.building1Upgrade);
         building2Upgrade = findViewById(R.id.building2Upgrade);
         building3Upgrade = findViewById(R.id.building3Upgrade);
@@ -32,5 +33,23 @@ public class ClickerShop extends Activity {
         building8Upgrade = findViewById(R.id.building8Upgrade);
         building9Upgrade = findViewById(R.id.building9Upgrade);
         building10Upgrade = findViewById(R.id.building10Upgrade);
+
+        buyMultiplier = findViewById(R.id.buyMultiplier);
+        buy1Upgrade = findViewById(R.id.buy1Upgrade);
+        buy2Upgrade = findViewById(R.id.buy2Upgrade);
+        buy3Upgrade = findViewById(R.id.buy3Upgrade);
+        buy4Upgrade = findViewById(R.id.buy4Upgrade);
+        buy5Upgrade = findViewById(R.id.buy5Upgrade);
+        buy6Upgrade = findViewById(R.id.buy6Upgrade);
+        buy7Upgrade = findViewById(R.id.buy7Upgrade);
+        buy8Upgrade = findViewById(R.id.buy8Upgrade);
+        buy9Upgrade = findViewById(R.id.buy9Upgrade);
+        buy10Upgrade = findViewById(R.id.buy10Upgrade);
+
+        Intent intent = getIntent();
+        score = intent.getDoubleExtra(MainActivity.TAG_SCORE, 0);
+        cost = intent.getDoubleArrayExtra(MainActivity.TAG_COST);
+        level = intent.getIntArrayExtra(MainActivity.TAG_LEVEL);
+        multiplier = intent.getDoubleExtra(MainActivity.TAG_MULTIPLIER, 0);
     }
 }
