@@ -18,8 +18,9 @@ public class MainActivity extends Activity {
     public static final String TAG_BUILDING_LEVELS = "buildinglevels";
     public static final String TAG_BUILDING_COSTS = "buildingcosts";
     public static final int REQUEST_CODE_SHOP = 1;
+    public static final int REQUEST_CODE_CLICKER_SHOP = 2;
     private TextView title, points, clickMultiplier, clicksPerSecond;
-    private Button  shop;
+    private Button  shop, clickerShop;
     private ImageButton clickbutton;
     private Handler clickHandler;
     private final int TIME_INTERVAL_MILLIS = 1000;
@@ -44,6 +45,7 @@ public class MainActivity extends Activity {
 
         clickbutton = (ImageButton)findViewById(R.id.clickbutton);
         shop = (Button)findViewById(R.id.shop);
+        clickerShop = (Button)findViewById(R.id.clickerShop);
 
         clickbutton.setEnabled(true);
         shop.setEnabled(true);
@@ -62,12 +64,20 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Intent shopActivity = new Intent(MainActivity.this, Shop.class);
                 shopActivity.putExtra(TAG_SCORE, score);
-                shopActivity.putExtra(TAG_COSTS, costs);
-                shopActivity.putExtra(TAG_MULTIPLIER, multiplier);
-                shopActivity.putExtra(TAG_LEVELS, levels);
                 shopActivity.putExtra(TAG_BUILDING_COSTS, buildingCosts);
                 shopActivity.putExtra(TAG_BUILDING_LEVELS, buildingLevels);
                 startActivityForResult(shopActivity, REQUEST_CODE_SHOP);
+            }
+        });
+
+        clickerShop.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent clickerShopActivity = new Intent(MainActivity.this, ClickerShop.class);
+                clickerShopActivity.putExtra(TAG_SCORE, score);
+                clickerShopActivity.putExtra(TAG_COSTS, costs);
+                clickerShopActivity.putExtra(TAG_MULTIPLIER, multiplier);
+                clickerShopActivity.putExtra(TAG_LEVELS, levels);
+                startActivityForResult(clickerShopActivity, REQUEST_CODE_SHOP);
             }
         });
     }
@@ -79,9 +89,6 @@ public class MainActivity extends Activity {
         if (requestCode == REQUEST_CODE_SHOP && resultCode == Activity.RESULT_OK) {
             // Retrieve updated data from the intent
             score = data.getDoubleExtra(TAG_SCORE, 0);
-            multiplier = data.getDoubleExtra(TAG_MULTIPLIER, 1.0);
-            costs = data.getDoubleArrayExtra(TAG_COSTS);
-            levels = data.getIntArrayExtra(TAG_LEVELS);
             buildingCosts = data.getDoubleArrayExtra(TAG_BUILDING_COSTS);
             buildingLevels = data.getIntArrayExtra(TAG_BUILDING_LEVELS);
 
@@ -92,8 +99,15 @@ public class MainActivity extends Activity {
 
             // Update UI or perform any other actions with the updated data
             updateScore(score);
-            clickMultiplier.setText("Click Multiplier: " + String.format("%.2f", multiplier) + "x");
             clicksPerSecond.setText("Clicks per Second: " + String.format("%.2f", cps));
+        } else if (requestCode == REQUEST_CODE_CLICKER_SHOP && resultCode == Activity.RESULT_OK) {
+            score = data.getDoubleExtra(TAG_SCORE, 0);
+            costs = data.getDoubleArrayExtra(TAG_COSTS);
+            levels = data.getIntArrayExtra(TAG_LEVELS);
+            multiplier = data.getDoubleExtra(TAG_MULTIPLIER, 1);
+
+            updateScore(score);
+            clickMultiplier.setText("Click Multiplier: " + String.format("%.2f", multiplier) + "x");
         }
     }
 

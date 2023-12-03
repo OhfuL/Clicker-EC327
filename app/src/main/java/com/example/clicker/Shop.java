@@ -14,7 +14,7 @@ public class Shop extends Activity {
     private Button buyBuilding1, buyBuilding2, buyBuilding3, buyBuilding4, buyBuilding5, buyBuilding6, buyBuilding7, buyBuilding8, buyBuilding9, buyBuilding10;
     private TextView points;
     private Button back;
-    private double score, multiplier;
+    private double score;
     private double[] buildingCosts;
     private int[] buildingLevels;
 
@@ -22,7 +22,6 @@ public class Shop extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shop);
-
 
         building1 = findViewById(R.id.building1);
         building2 = findViewById(R.id.building2);
@@ -52,7 +51,6 @@ public class Shop extends Activity {
         // Retrieve data from the intent
         Intent intent = getIntent();
         score = intent.getDoubleExtra(MainActivity.TAG_SCORE, 0);
-        multiplier = intent.getDoubleExtra(MainActivity.TAG_MULTIPLIER, 1.0);
         buildingCosts = intent.getDoubleArrayExtra(MainActivity.TAG_BUILDING_COSTS);
         buildingLevels = intent.getIntArrayExtra(MainActivity.TAG_BUILDING_LEVELS);
 
@@ -109,7 +107,6 @@ public class Shop extends Activity {
                 // Return updated data to MainActivity
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra(MainActivity.TAG_SCORE, score);
-                resultIntent.putExtra(MainActivity.TAG_MULTIPLIER, multiplier);
                 resultIntent.putExtra(MainActivity.TAG_BUILDING_COSTS, buildingCosts);
                 resultIntent.putExtra(MainActivity.TAG_BUILDING_LEVELS, buildingLevels);
                 setResult(Activity.RESULT_OK, resultIntent);
