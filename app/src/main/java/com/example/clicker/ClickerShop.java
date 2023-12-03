@@ -55,16 +55,16 @@ public class ClickerShop extends Activity {
 
 
         // Update the text on the buttons to display the current costs - NAMES OF THE BUILDING UPGRADES IN THE SHOP
-        building1upgrade.setText("Students Multiplier (" + buildingUpgradeLevels[0] + "x)");
-        building2upgrade.setText("Warren Multiplier (" + buildingUpgradeLevels[1] + "x)");
-        building3upgrade.setText("West Multiplier (" + buildingUpgradeLevels[2] + "x)");
-        building4upgrade.setText("1019 Multiplier (" + buildingUpgradeLevels[3] + "x)");
-        building5upgrade.setText("Hojo Multiplier (" + buildingUpgradeLevels[4] + "x)");
-        building6upgrade.setText("Kilachand Multiplier (" + buildingUpgradeLevels[5] + "x)");
-        building7upgrade.setText("Myles Multiplier (" + buildingUpgradeLevels[6] + "x)");
-        building8upgrade.setText("Stuvi 1 Multiplier (" + buildingUpgradeLevels[7] + "x)");
-        building9upgrade.setText("Stuvi 2 Multiplier (" + buildingUpgradeLevels[8] + "x)");
-        building10upgrade.setText("Off Campus Multiplier(" + buildingUpgradeLevels[9] + "x)");
+        building1Upgrade.setText("Students Multiplier (" + buildingUpgradeLevels[0] + "x)");
+        building2Upgrade.setText("Warren Multiplier (" + buildingUpgradeLevels[1] + "x)");
+        building3Upgrade.setText("West Multiplier (" + buildingUpgradeLevels[2] + "x)");
+        building4Upgrade.setText("1019 Multiplier (" + buildingUpgradeLevels[3] + "x)");
+        building5Upgrade.setText("Hojo Multiplier (" + buildingUpgradeLevels[4] + "x)");
+        building6Upgrade.setText("Kilachand Multiplier (" + buildingUpgradeLevels[5] + "x)");
+        building7Upgrade.setText("Myles Multiplier (" + buildingUpgradeLevels[6] + "x)");
+        building8Upgrade.setText("Stuvi 1 Multiplier (" + buildingUpgradeLevels[7] + "x)");
+        building9Upgrade.setText("Stuvi 2 Multiplier (" + buildingUpgradeLevels[8] + "x)");
+        building1Upgrade.setText("Off Campus Multiplier(" + buildingUpgradeLevels[9] + "x)");
 
         // Update the text on the buttons to display the current costs - COSTS OF THE BUILDING UPGRADES IN THE SHOP
         buy1Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[0]));
