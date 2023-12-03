@@ -9,11 +9,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ClickerShop extends Activity {
+    private TextView builingTitle, multiplierTitle;
     private TextView points, clickMultiplier, building1Upgrade, building2Upgrade, building3Upgrade, building4Upgrade, building5Upgrade, building6Upgrade, building7Upgrade, building8Upgrade, building9Upgrade, building10Upgrade;
     private Button back, buyMultiplier, buy1Upgrade, buy2Upgrade, buy3Upgrade, buy4Upgrade, buy5Upgrade, buy6Upgrade, buy7Upgrade, buy8Upgrade, buy9Upgrade, buy10Upgrade;
     private double score, multiplier;
-    private double[] costs;
-    private int[] levels;
+    private double cost;
+    private int level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +49,34 @@ public class ClickerShop extends Activity {
 
         Intent intent = getIntent();
         score = intent.getDoubleExtra(MainActivity.TAG_SCORE, 0);
-        cost = intent.getDoubleArrayExtra(MainActivity.TAG_COST);
-        level = intent.getIntArrayExtra(MainActivity.TAG_LEVEL);
-        multiplier = intent.getDoubleExtra(MainActivity.TAG_MULTIPLIER, 0);
+        cost = intent.getDoubleExtra(MainActivity.TAG_COST, 100);
+        level = intent.getIntExtra(MainActivity.TAG_LEVEL, 0);
+        multiplier = intent.getDoubleExtra(MainActivity.TAG_MULTIPLIER, 1);
+
+        // Update the text on the buttons to display the current costs - NAMES OF THE BUILDING UPGRADES IN THE SHOP
+        building1upgrade.setText("Students Multiplier (" + buildingUpgradeLevels[0] + "x)");
+        building2upgrade.setText("Warren Multiplier (" + buildingUpgradeLevels[1] + "x)");
+        building3upgrade.setText("West Multiplier (" + buildingUpgradeLevels[2] + "x)");
+        building4upgrade.setText("1019 Multiplier (" + buildingUpgradeLevels[3] + "x)");
+        building5upgrade.setText("Hojo Multiplier (" + buildingUpgradeLevels[4] + "x)");
+        building6upgrade.setText("Kilachand Multiplier (" + buildingUpgradeLevels[5] + "x)");
+        building7upgrade.setText("Myles Multiplier (" + buildingUpgradeLevels[6] + "x)");
+        building8upgrade.setText("Stuvi 1 Multiplier (" + buildingUpgradeLevels[7] + "x)");
+        building9upgrade.setText("Stuvi 2 Multiplier (" + buildingUpgradeLevels[8] + "x)");
+        building10upgrade.setText("Off Campus Multiplier(" + buildingUpgradeLevels[9] + "x)");
+
+        // Update the text on the buttons to display the current costs - COSTS OF THE BUILDING UPGRADES IN THE SHOP
+        buy1Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[0]));
+        buy2Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[1]));
+        buy3Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[2]));
+        buy4Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[3]));
+        buy5Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[4]));
+        buy6Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[5]));
+        buy7Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[6]));
+        buy8Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[7]));
+        buy9Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[8]));
+        buy10Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[9]));
     }
+
+
 }
