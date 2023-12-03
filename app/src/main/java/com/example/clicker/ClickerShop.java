@@ -12,8 +12,8 @@ public class ClickerShop extends Activity {
     private TextView points, clickMultiplier, building1Upgrade, building2Upgrade, building3Upgrade, building4Upgrade, building5Upgrade, building6Upgrade, building7Upgrade, building8Upgrade, building9Upgrade, building10Upgrade;
     private Button back, buyMultiplier, buy1Upgrade, buy2Upgrade, buy3Upgrade, buy4Upgrade, buy5Upgrade, buy6Upgrade, buy7Upgrade, buy8Upgrade, buy9Upgrade, buy10Upgrade;
     private double score, multiplier;
-    private double[] costs;
-    private int[] levels;
+    private double cost;
+    private int level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +48,8 @@ public class ClickerShop extends Activity {
 
         Intent intent = getIntent();
         score = intent.getDoubleExtra(MainActivity.TAG_SCORE, 0);
-        cost = intent.getDoubleArrayExtra(MainActivity.TAG_COST);
-        level = intent.getIntArrayExtra(MainActivity.TAG_LEVEL);
-        multiplier = intent.getDoubleExtra(MainActivity.TAG_MULTIPLIER, 0);
+        cost = intent.getDoubleExtra(MainActivity.TAG_COST, 100);
+        level = intent.getIntExtra(MainActivity.TAG_LEVEL, 0);
+        multiplier = intent.getDoubleExtra(MainActivity.TAG_MULTIPLIER, 1);
     }
 }

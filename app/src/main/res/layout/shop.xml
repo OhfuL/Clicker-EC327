@@ -7,14 +7,14 @@
     <Button
         android:id="@+id/back"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Back"
         android:textSize="20dp"/>
 
     <TextView
         android:id="@+id/points"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="0 Dining Points"
         android:layout_alignParentRight="true"
         android:padding="10dp"
@@ -23,7 +23,7 @@
     <TextView
         android:id="@+id/building1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:text="BU Students (0x) "
         android:layout_alignParentLeft="true"
@@ -34,7 +34,7 @@
     <Button
         android:id="@+id/buyBuilding1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="end"
         android:text="15"
         android:layout_alignParentRight="true"
@@ -44,7 +44,7 @@
     <TextView
         android:id="@+id/building2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:text="Warren Towers (0x) "
         android:layout_alignParentLeft="true"
@@ -55,7 +55,7 @@
     <Button
         android:id="@+id/buyBuilding2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="end"
         android:text="100"
         android:layout_alignParentRight="true"
@@ -65,7 +65,7 @@
     <TextView
         android:id="@+id/building3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:text="West Dorms (0x) "
         android:layout_alignParentLeft="true"
@@ -76,7 +76,7 @@
     <Button
         android:id="@+id/buyBuilding3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="end"
         android:text="1100"
         android:layout_alignParentRight="true"
@@ -86,7 +86,7 @@
     <TextView
         android:id="@+id/building4"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:text="1019 Comm Ave (0x) "
         android:layout_alignParentLeft="true"
@@ -97,7 +97,7 @@
     <Button
         android:id="@+id/buyBuilding4"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="end"
         android:text="12000"
         android:layout_alignParentRight="true"
@@ -107,7 +107,7 @@
     <TextView
         android:id="@+id/building5"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:text="Hojo (0x) "
         android:layout_alignParentLeft="true"
@@ -118,7 +118,7 @@
     <Button
         android:id="@+id/buyBuilding5"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="end"
         android:text="130000"
         android:layout_alignParentRight="true"
@@ -128,7 +128,7 @@
     <TextView
         android:id="@+id/building6"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:text="Kilachand (0x) "
         android:layout_alignParentLeft="true"
@@ -139,7 +139,7 @@
     <Button
         android:id="@+id/buyBuilding6"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="end"
         android:text="1400000"
         android:layout_alignParentRight="true"
@@ -149,7 +149,7 @@
     <TextView
         android:id="@+id/building7"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:text="Myles Standish (0x) "
         android:layout_alignParentLeft="true"
@@ -160,7 +160,7 @@
     <Button
         android:id="@+id/buyBuilding7"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="end"
         android:text="20000000"
         android:layout_alignParentRight="true"
@@ -170,7 +170,7 @@
     <TextView
         android:id="@+id/building8"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:text="Stuvi 1 (0x) "
         android:layout_alignParentLeft="true"
@@ -181,7 +181,7 @@
     <Button
         android:id="@+id/buyBuilding8"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="end"
         android:text="330000000"
         android:layout_alignParentRight="true"
@@ -191,7 +191,7 @@
     <TextView
         android:id="@+id/building9"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:text="Stuvi 2 (0x) "
         android:layout_alignParentLeft="true"
@@ -202,7 +202,7 @@
     <Button
         android:id="@+id/buyBuilding9"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="end"
         android:text="5100000000"
         android:layout_alignParentRight="true"
@@ -212,7 +212,7 @@
     <TextView
         android:id="@+id/building10"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:text="Off Campus (0x) "
         android:layout_alignParentLeft="true"
@@ -223,7 +223,7 @@
     <Button
         android:id="@+id/buyBuilding10"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="end"
         android:text="75000000000"
         android:layout_alignParentRight="true"
