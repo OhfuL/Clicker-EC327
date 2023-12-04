@@ -16,16 +16,13 @@ public class ClickerShop extends Activity {
     private double cost;
     private int level;
     private double[] buildingUpgradeCosts;
-    private double[] buildingUpgradeLevels;
+    private int[] buildingUpgradeLevels;
     double[] buildingMultiplier;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.clicker_shop);
 
-        points = findViewById(R.id.points);
-        clickMultiplier = findViewById(R.id.clickMultiplier);
-        back = findViewById(R.id.back);
         building1Upgrade = findViewById(R.id.building1Upgrade);
         building2Upgrade = findViewById(R.id.building2Upgrade);
         building3Upgrade = findViewById(R.id.building3Upgrade);
@@ -49,24 +46,31 @@ public class ClickerShop extends Activity {
         buy9Upgrade = findViewById(R.id.buy9Upgrade);
         buy10Upgrade = findViewById(R.id.buy10Upgrade);
 
+        points = findViewById(R.id.points);
+        clickMultiplier = findViewById(R.id.clickMultiplier);
+        back = findViewById(R.id.back);
+
         Intent intent = getIntent();
         score = intent.getDoubleExtra(MainActivity.TAG_SCORE, 0);
         cost = intent.getDoubleExtra(MainActivity.TAG_COST, 100);
         level = intent.getIntExtra(MainActivity.TAG_LEVEL, 0);
         multiplier = intent.getDoubleExtra(MainActivity.TAG_MULTIPLIER, 1);
+        buildingUpgradeLevels = intent.getIntArrayExtra(MainActivity.TAG_BUILDING_UPGRADE_LEVELS);
+        buildingUpgradeCosts = intent.getDoubleArrayExtra(MainActivity.TAG_BUILDING_UPGRADE_COSTS);
 
+        points.setText(String.format("%.2f", score) + " Dining Points");
 
         // Update the text on the buttons to display the current costs - NAMES OF THE BUILDING UPGRADES IN THE SHOP
-        building1Upgrade.setText("Students Multiplier (" + buildingUpgradeLevels[0] + "x)");
-        building2Upgrade.setText("Warren Multiplier (" + buildingUpgradeLevels[1] + "x)");
-        building3Upgrade.setText("West Multiplier (" + buildingUpgradeLevels[2] + "x)");
-        building4Upgrade.setText("1019 Multiplier (" + buildingUpgradeLevels[3] + "x)");
-        building5Upgrade.setText("Hojo Multiplier (" + buildingUpgradeLevels[4] + "x)");
-        building6Upgrade.setText("Kilachand Multiplier (" + buildingUpgradeLevels[5] + "x)");
-        building7Upgrade.setText("Myles Multiplier (" + buildingUpgradeLevels[6] + "x)");
-        building8Upgrade.setText("Stuvi 1 Multiplier (" + buildingUpgradeLevels[7] + "x)");
-        building9Upgrade.setText("Stuvi 2 Multiplier (" + buildingUpgradeLevels[8] + "x)");
-        building1Upgrade.setText("Off Campus Multiplier(" + buildingUpgradeLevels[9] + "x)");
+        building1Upgrade.setText("BU Students (" + buildingUpgradeLevels[0] + "x)");
+        building2Upgrade.setText("Warren Towers (" + buildingUpgradeLevels[1] + "x)");
+        building3Upgrade.setText("West Dorms (" + buildingUpgradeLevels[2] + "x)");
+        building4Upgrade.setText("1019 Comm Ave (" + buildingUpgradeLevels[3] + "x)");
+        building5Upgrade.setText("Hojo (" + buildingUpgradeLevels[4] + "x)");
+        building6Upgrade.setText("Kilachand (" + buildingUpgradeLevels[5] + "x)");
+        building7Upgrade.setText("Myles Standish (" + buildingUpgradeLevels[6] + "x)");
+        building8Upgrade.setText("Stuvi 1 (" + buildingUpgradeLevels[7] + "x)");
+        building9Upgrade.setText("Stuvi 2 (" + buildingUpgradeLevels[8] + "x)");
+        building1Upgrade.setText("Off Campus (" + buildingUpgradeLevels[9] + "x)");
 
         // Update the text on the buttons to display the current costs - COSTS OF THE BUILDING UPGRADES IN THE SHOP
         buy1Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[0]));
@@ -103,12 +107,14 @@ public class ClickerShop extends Activity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra(MainActivity.TAG_SCORE, score);
-                intent.putExtra(MainActivity.TAG_MULTIPLIER, multiplier);
-                intent.putExtra(MainActivity.TAG_COST, cost);
-                intent.putExtra(MainActivity.TAG_LEVEL, level);
-                setResult(RESULT_OK, intent);
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra(MainActivity.TAG_SCORE, score);
+                resultIntent.putExtra(MainActivity.TAG_MULTIPLIER, multiplier);
+                resultIntent.putExtra(MainActivity.TAG_COST, cost);
+                resultIntent.putExtra(MainActivity.TAG_LEVEL, level);
+                resultIntent.putExtra(MainActivity.TAG_BUILDING_UPGRADE_COSTS, buildingUpgradeCosts);
+                resultIntent.putExtra(MainActivity.TAG_BUILDING_UPGRADE_LEVELS, buildingUpgradeLevels);
+                setResult(Activity.RESULT_OK, resultIntent);
                 finish();
             }
         });

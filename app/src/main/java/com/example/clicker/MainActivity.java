@@ -34,12 +34,11 @@ public class MainActivity extends Activity {
     double cost = 100;
     int level = 0;
     int[] buildingLevels = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    double[] buildingCosts = {15, 100, 1100, 12000, 130000, 1400000, 20000000, 330000000, 5100000000d, 75000000000d};
     int[] buildingUpgradeLevels = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     // FIX THESE VALUES ( BUILDING UPGRADE COSTS )
     double[] buildingUpgradeCosts = {100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    double[] buildingCosts = {15, 100, 1100, 12000, 130000, 1400000, 20000000, 330000000, 5100000000d, 75000000000d};
     final double[] buildingRates = {0.3, 1, 8, 47, 260, 1400, 7800, 44000, 260000, 1600000};
-    double[] buildingMultiplier = {1, 1, 1, 1, 1, 1, 1};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
