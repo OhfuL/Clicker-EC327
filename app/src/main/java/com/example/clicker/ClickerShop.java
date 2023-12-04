@@ -147,21 +147,21 @@ public class ClickerShop extends Activity {
 
             // Update building price based on upgrade level
             if (buildingUpgradeLevels[0] == 1) {
-                buildingUpgradeCosts[0] = 500;
+                buildingUpgradeCosts[0] = 500d;
             } else if (buildingUpgradeLevels[0] == 2) {
-                buildingUpgradeCosts[0] = 10000;
+                buildingUpgradeCosts[0] = 10000d;
             } else if (buildingUpgradeLevels[0] == 3) {
-                buildingUpgradeCosts[0] = 100000;
+                buildingUpgradeCosts[0] = 100000d;
             } else if (buildingUpgradeLevels[0] == 4) {
-                buildingUpgradeCosts[0] = 10000000;
+                buildingUpgradeCosts[0] = 10000000d;
             } else if (buildingUpgradeLevels[0] == 5) {
-                buildingUpgradeCosts[0] = 100000000;
+                buildingUpgradeCosts[0] = 100000000d;
             } else if (buildingUpgradeLevels[0] == 6) {
-                buildingUpgradeCosts[0] = 1000000000;
+                buildingUpgradeCosts[0] = 1000000000d;
             } else if (buildingUpgradeLevels[0] == 7) {
-                buildingUpgradeCosts[0] = 10000000000;
+                buildingUpgradeCosts[0] = 10000000000d;
             } else if (buildingUpgradeLevels[0] == 8) {
-                buildingUpgradeCosts[0] = 100000000000;
+                buildingUpgradeCosts[0] = 100000000000d;
             }
 
             // Update multiplier based on upgrade level
@@ -190,31 +190,31 @@ public class ClickerShop extends Activity {
             score -= buildingUpgradeCosts[1];
 
             if (buildingUpgradeLevels[1] == 1) {
-                buildingUpgradeCosts[1] = 5000;
+                buildingUpgradeCosts[1] = 5000d;
             }else if (buildingUpgradeLevels[1] == 2) {
-                buildingUpgradeCosts[1] = 25000;
+                buildingUpgradeCosts[1] = 25000d;
             } else if (buildingUpgradeLevels[1] == 3) {
-                buildingUpgradeCosts[1] = 50000;
+                buildingUpgradeCosts[1] = 50000d;
             } else if (buildingUpgradeLevels[1] == 4) {
-                buildingUpgradeCosts[1] = 50000*5;
+                buildingUpgradeCosts[1] = 2500000d;
             } else if (buildingUpgradeLevels[1] == 5) {
-                buildingUpgradeCosts[1] = 5000000;
+                buildingUpgradeCosts[1] = 5000000d;
             } else if (buildingUpgradeLevels[1] == 6) {
-                buildingUpgradeCosts[1] = 5000000*5;
+                buildingUpgradeCosts[1] = 250000000d;
             } else if (buildingUpgradeLevels[1] == 7) {
                 buildingUpgradeCosts[1] = 500000000;
             } else if (buildingUpgradeLevels[1] == 8) {
-                buildingUpgradeCosts[1] = 500000000*5;
+                buildingUpgradeCosts[1] = 25000000000d;
             } else if (buildingUpgradeLevels[1] == 9) {
-                buildingUpgradeCosts[1] = 50000000000;
+                buildingUpgradeCosts[1] = 50000000000d;
             } else if (buildingUpgradeLevels[1] == 10) {
-                buildingUpgradeCosts[1] = 50000000000*5;
+                buildingUpgradeCosts[1] = 2500000000000d;
             } else if (buildingUpgradeLevels[1] == 11) {
-                buildingUpgradeCosts[1] = 50000000000000;
+                buildingUpgradeCosts[1] = 50000000000000d;
             } else if (buildingUpgradeLevels[1] == 12) {
-                buildingUpgradeCosts[1] = 50000000000000*5;
+                buildingUpgradeCosts[1] = 2500000000000000d;
             } else if (buildingUpgradeLevels[1] == 13) {
-                buildingUpgradeCosts[1] = 50000000000000000;
+                buildingUpgradeCosts[1] = 50000000000000000d;
             }
             buildingUpgradeLevels[1] += 1;
             buildingMultiplier[0] *= 2; // Double the multiplier
@@ -233,19 +233,19 @@ public class ClickerShop extends Activity {
             score -= buildingUpgradeCosts[2];
 
             if (buildingUpgradeLevels[2] == 1){
-                buildingUpgradeCosts[2] = 11000;
+                buildingUpgradeCosts[2] = 11000d;
             } else if (buildingUpgradeLevels[2] == 2) {
-                buildingUpgradeCosts[2] = 55000;
+                buildingUpgradeCosts[2] = 55000d;
             } else if (buildingUpgradeLevels[2] == 3) {
-                buildingUpgradeCosts[2] = 550000;
+                buildingUpgradeCosts[2] = 550000d;
             } else if (buildingUpgradeLevels[2] == 4) {
-                buildingUpgradeCosts[2] = 55000000;
+                buildingUpgradeCosts[2] = 55000000d;
             } else if (buildingUpgradeLevels[2] == 5) {
-                buildingUpgradeCosts[2] = 5500000000;
+                buildingUpgradeCosts[2] = 5500000000d;
             } else if (buildingUpgradeLevels[2] == 6) {
-                buildingUpgradeCosts[2] = 55000000000;
+                buildingUpgradeCosts[2] = 55000000000d;
             } else if (buildingUpgradeLevels[2] == 7) {
-                buildingUpgradeCosts[2] = 55000000000000;
+                buildingUpgradeCosts[2] = 55000000000000d;
             }
             buildingUpgradeLevels[2] += 1;
             buildingMultiplier[1] *= 2; // Double the multiplier
@@ -264,19 +264,19 @@ public class ClickerShop extends Activity {
             score -= buildingUpgradeCosts[3];
 
             if (buildingUpgradeLevels[3] == 1){
-                buildingUpgradeCosts[3] = 120000;
+                buildingUpgradeCosts[3] = 120000d;
             } else if (buildingUpgradeLevels[3] == 2) {
-                buildingUpgradeCosts[3] = 600000;
+                buildingUpgradeCosts[3] = 600000d;
             } else if (buildingUpgradeLevels[3] == 3) {
-                buildingUpgradeCosts[3] = 6000000;
+                buildingUpgradeCosts[3] = 6000000d;
             } else if (buildingUpgradeLevels[3] == 4) {
-                buildingUpgradeCosts[3] = 600000000;
+                buildingUpgradeCosts[3] = 600000000d;
             } else if (buildingUpgradeLevels[3] == 5) {
-                buildingUpgradeCosts[3] = 6000000000;
+                buildingUpgradeCosts[3] = 6000000000d;
             } else if (buildingUpgradeLevels[3] == 6) {
-                buildingUpgradeCosts[3] = 6000000000000;
+                buildingUpgradeCosts[3] = 6000000000000d;
             } else if (buildingUpgradeLevels[3] == 7) {
-                buildingUpgradeCosts[3] = 6000000000000000;
+                buildingUpgradeCosts[3] = 6000000000000000d;
             }
             buildingUpgradeLevels[3] += 1;
             buildingMultiplier[2] *= 2; // Double the multiplier
@@ -295,19 +295,19 @@ public class ClickerShop extends Activity {
             score -= buildingUpgradeCosts[4];
 
             if (buildingUpgradeLevels[4] == 1){
-                buildingUpgradeCosts[4] = 1300000;
+                buildingUpgradeCosts[4] = 1300000d;
             } else if (buildingUpgradeLevels[4] == 2) {
-                buildingUpgradeCosts[4] = 6500000;
+                buildingUpgradeCosts[4] = 6500000d;
             } else if (buildingUpgradeLevels[4] == 3) {
-                buildingUpgradeCosts[4] = 65000000;
+                buildingUpgradeCosts[4] = 65000000d;
             } else if (buildingUpgradeLevels[4] == 4) {
-                buildingUpgradeCosts[4] = 6500000000;
+                buildingUpgradeCosts[4] = 6500000000d;
             } else if (buildingUpgradeLevels[4] == 5) {
-                buildingUpgradeCosts[4] = 6500000000000;
+                buildingUpgradeCosts[4] = 6500000000000d;
             } else if (buildingUpgradeLevels[4] == 6) {
-                buildingUpgradeCosts[4] = 650000000000000;
+                buildingUpgradeCosts[4] = 650000000000000d;
             } else if (buildingUpgradeLevels[4] == 7) {
-                buildingUpgradeCosts[4] = 65000000000000000;
+                buildingUpgradeCosts[4] = 65000000000000000d;
             }
             buildingUpgradeLevels[4] += 1;
             buildingMultiplier[3] *= 2; // Double the multiplier
@@ -326,19 +326,19 @@ public class ClickerShop extends Activity {
             score -= buildingUpgradeCosts[5];
 
             if (buildingUpgradeLevels[5] == 1){
-                buildingUpgradeCosts[5] = 14000000;
+                buildingUpgradeCosts[5] = 14000000d;
             } else if (buildingUpgradeLevels[5] == 2) {
-                buildingUpgradeCosts[5] = 70000000;
+                buildingUpgradeCosts[5] = 70000000d;
             } else if (buildingUpgradeLevels[5] == 3) {
-                buildingUpgradeCosts[5] = 700000000;
+                buildingUpgradeCosts[5] = 700000000d;
             } else if (buildingUpgradeLevels[5] == 4) {
-                buildingUpgradeCosts[5] = 70000000000;
+                buildingUpgradeCosts[5] = 70000000000d;
             } else if (buildingUpgradeLevels[5] == 5) {
-                buildingUpgradeCosts[5] = 7000000000000;
+                buildingUpgradeCosts[5] = 7000000000000d;
             } else if (buildingUpgradeLevels[5] == 6) {
-                buildingUpgradeCosts[5] = 700000000000000;
+                buildingUpgradeCosts[5] = 700000000000000d;
             } else if (buildingUpgradeLevels[5] == 7) {
-                buildingUpgradeCosts[5] = 700000000000000000;
+                buildingUpgradeCosts[5] = 700000000000000000d;
             }
             buildingUpgradeLevels[5] += 1;
             buildingMultiplier[4] *= 2; // Double the multiplier
@@ -357,19 +357,19 @@ public class ClickerShop extends Activity {
             score -= buildingUpgradeCosts[6];
 
             if (buildingUpgradeLevels[6] == 1){
-                buildingUpgradeCosts[6] = 200000000;
+                buildingUpgradeCosts[6] = 200000000d;
             } else if (buildingUpgradeLevels[6] == 2) {
-                buildingUpgradeCosts[6] = 1000000000;
+                buildingUpgradeCosts[6] = 1000000000d;
             } else if (buildingUpgradeLevels[6] == 3) {
-                buildingUpgradeCosts[6] = 10000000000;
+                buildingUpgradeCosts[6] = 10000000000d;
             } else if (buildingUpgradeLevels[6] == 4) {
-                buildingUpgradeCosts[6] = 1000000000000;
+                buildingUpgradeCosts[6] = 1000000000000d;
             } else if (buildingUpgradeLevels[6] == 5) {
-                buildingUpgradeCosts[6] = 100000000000000;
+                buildingUpgradeCosts[6] = 100000000000000d;
             } else if (buildingUpgradeLevels[6] == 6) {
-                buildingUpgradeCosts[6] = 10000000000000000;
+                buildingUpgradeCosts[6] = 10000000000000000d;
             } else if (buildingUpgradeLevels[6] == 7) {
-                buildingUpgradeCosts[6] = 10000000000000000000;
+                buildingUpgradeCosts[6] = 10000000000000000000d;
             }
             buildingUpgradeLevels[6] += 1;
             buildingMultiplier[5] *= 2; // Double the multiplier
@@ -389,19 +389,19 @@ public class ClickerShop extends Activity {
             score -= buildingUpgradeCosts[7];
 
             if (buildingUpgradeLevels[7] == 1){
-                buildingUpgradeCosts[7] = 33000000000;
+                buildingUpgradeCosts[7] = 33000000000d;
             } else if (buildingUpgradeLevels[7] == 2) {
-                buildingUpgradeCosts[7] = 16500000000;
+                buildingUpgradeCosts[7] = 16500000000d;
             } else if (buildingUpgradeLevels[7] == 3) {
-                buildingUpgradeCosts[7] = 165000000000;
+                buildingUpgradeCosts[7] = 165000000000d;
             } else if (buildingUpgradeLevels[7] == 4) {
-                buildingUpgradeCosts[7] = 16500000000000;
+                buildingUpgradeCosts[7] = 16500000000000d;
             } else if (buildingUpgradeLevels[7] == 5) {
-                buildingUpgradeCosts[7] = 1650000000000000;
+                buildingUpgradeCosts[7] = 1650000000000000d;
             } else if (buildingUpgradeLevels[7] == 6) {
-                buildingUpgradeCosts[7] = 165000000000000000;
+                buildingUpgradeCosts[7] = 165000000000000000d;
             } else if (buildingUpgradeLevels[7] == 7) {
-                buildingUpgradeCosts[7] = 165000000000000000000;
+                buildingUpgradeCosts[7] = 165000000000000000000d;
             }
             buildingUpgradeLevels[7] += 1;
             buildingMultiplier[6] *= 2; // Double the multiplier
@@ -420,19 +420,19 @@ public class ClickerShop extends Activity {
             score -= buildingUpgradeCosts[8];
 
             if (buildingUpgradeLevels[8] == 1){
-                buildingUpgradeCosts[8] = 51000000000;
+                buildingUpgradeCosts[8] = 51000000000d;
             } else if (buildingUpgradeLevels[8] == 2) {
-                buildingUpgradeCosts[8] = 255000000000;
+                buildingUpgradeCosts[8] = 255000000000d;
             } else if (buildingUpgradeLevels[8] == 3) {
-                buildingUpgradeCosts[8] = 2550000000000;
+                buildingUpgradeCosts[8] = 2550000000000d;
             } else if (buildingUpgradeLevels[8] == 4) {
-                buildingUpgradeCosts[8] = 255000000000000;
+                buildingUpgradeCosts[8] = 255000000000000d;
             } else if (buildingUpgradeLevels[8] == 5) {
-                buildingUpgradeCosts[8] = 25500000000000000;
+                buildingUpgradeCosts[8] = 25500000000000000d;
             } else if (buildingUpgradeLevels[8] == 6) {
-                buildingUpgradeCosts[8] = 2550000000000000000;
+                buildingUpgradeCosts[8] = 2550000000000000000d;
             } else if (buildingUpgradeLevels[8] == 7) {
-                buildingUpgradeCosts[8] = 2550000000000000000000;
+                buildingUpgradeCosts[8] = 2550000000000000000000d;
             }
             buildingUpgradeLevels[8] += 1;
             buildingMultiplier[7] *= 2; // Double the multiplier
@@ -451,19 +451,19 @@ public class ClickerShop extends Activity {
             score -= buildingUpgradeCosts[9];
 
             if (buildingUpgradeLevels[9] == 1){
-                buildingUpgradeCosts[9] = 750000000000;
+                buildingUpgradeCosts[9] = 750000000000d;
             } else if (buildingUpgradeLevels[9] == 2) {
-                buildingUpgradeCosts[9] = 3750000000;
+                buildingUpgradeCosts[9] = 3750000000d;
             } else if (buildingUpgradeLevels[9] == 3) {
-                buildingUpgradeCosts[9] = 37500000000;
+                buildingUpgradeCosts[9] = 37500000000d;
             } else if (buildingUpgradeLevels[9] == 4) {
-                buildingUpgradeCosts[9] = 3750000000000;
+                buildingUpgradeCosts[9] = 3750000000000d;
             } else if (buildingUpgradeLevels[9] == 5) {
-                buildingUpgradeCosts[9] = 375000000000000;
+                buildingUpgradeCosts[9] = 375000000000000d;
             } else if (buildingUpgradeLevels[9] == 6) {
-                buildingUpgradeCosts[9] = 37500000000000000;
+                buildingUpgradeCosts[9] = 37500000000000000d;
             } else if (buildingUpgradeLevels[9] == 7) {
-                buildingUpgradeCosts[9] = 37500000000000000000;
+                buildingUpgradeCosts[9] = 37500000000000000000d;
             }
             buildingUpgradeLevels[9] += 1;
             buildingMultiplier[8] *= 2; // Double the multiplier
