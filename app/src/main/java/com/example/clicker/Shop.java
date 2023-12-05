@@ -57,7 +57,9 @@ public class Shop extends Activity {
 
 
         // Update the text views to display the current score and multiplier
-        points.setText(String.format("%.2f", score) + " Dining Points");
+        //points.setText(String.format("%.2f", score) + " Dining Points"); ////old
+
+
 
         // Update the text on the buttons to display the current costs - NAMES OF THE BUILDINGS IN THE SHOP
         building1.setText("BU Students (" + buildingLevels[0] + "x)");
@@ -115,7 +117,30 @@ public class Shop extends Activity {
             }
         });
 
+        points.setText(formatNumber(score) + " Dining Points");
+
     }
+
+    private String formatNumber(double num) {
+        if (num < 1000) {
+            return String.format("%.2f", num);
+        } else if (num < 1_000_000) {
+            return String.format("%.2fK", num / 1000);
+        } else if (num < 1_000_000_000) {
+            return String.format("%.2fM", num / 1_000_000);
+        } else if (num < 1_000_000_000_000L) {
+            return String.format("%.2fB", num / 1_000_000_000);
+        } else if (num < 1_000_000_000_000_000L) {
+            return String.format("%.2fT", num / 1_000_000_000_000L);
+        } else if (num < 1_000_000_000_000_000_000L) {
+            return String.format("%.2fQ", num / 1_000_000_000_000_000L);
+        } else {
+            return String.format("%.2fE", num / 1_000_000_000_000_000_000L);
+        }
+    }
+
+
+
 
     private void handleBuyButtonClick(View v) {
         if (v == buyBuilding1) {

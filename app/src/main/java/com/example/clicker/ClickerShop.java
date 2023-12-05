@@ -60,7 +60,9 @@ public class ClickerShop extends Activity {
         buildingUpgradeCosts = intent.getDoubleArrayExtra(MainActivity.TAG_BUILDING_UPGRADE_COSTS);
         buildingUpgradeMultipliers = intent.getDoubleArrayExtra(MainActivity.TAG_BUILDING_UPGRADE_MULTIPLIERS);
 
-        points.setText(String.format("%.2f", score) + " Dining Points");
+        points.setText(formatNumber(score) + " Dining Points");
+
+
         clickMultiplier.setText("Click Multiplier (" + level + "x)");
         buyMultiplier.setText("" + String.format("%.2f", cost));
 
@@ -124,6 +126,24 @@ public class ClickerShop extends Activity {
                 finish();
             }
         });
+    }
+
+    private String formatNumber(double num) {
+        if (num < 1000) {
+            return String.format("%.2f", num);
+        } else if (num < 1_000_000) {
+            return String.format("%.2fK", num / 1000);
+        } else if (num < 1_000_000_000) {
+            return String.format("%.2fM", num / 1_000_000);
+        } else if (num < 1_000_000_000_000L) {
+            return String.format("%.2fB", num / 1_000_000_000);
+        } else if (num < 1_000_000_000_000_000L) {
+            return String.format("%.2fT", num / 1_000_000_000_000L);
+        } else if (num < 1_000_000_000_000_000_000L) {
+            return String.format("%.2fQ", num / 1_000_000_000_000_000L);
+        } else {
+            return String.format("%.2fE", num / 1_000_000_000_000_000_000L);
+        }
     }
 
     private void handleBuyButtonClick(View v) {
