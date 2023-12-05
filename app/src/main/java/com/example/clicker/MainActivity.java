@@ -15,8 +15,6 @@ import androidx.appcompat.widget.AppCompatButton;
 
 public class MainActivity extends Activity {
 
-    AppCompatButton btn1;
-
     public static final String TAG_SCORE = "score";
     public static final String TAG_COST = "cost";
     public static final String TAG_MULTIPLIER = "multiplier";
@@ -35,7 +33,7 @@ public class MainActivity extends Activity {
     private Handler clickHandler;
     private final int TIME_INTERVAL_MILLIS = 1000;
     private MediaPlayer clickSoundPlayer;
-    double score = 0;
+    double score = 66000;
     double multiplier = 1.0;
     double cps = 0;
     double cost = 100;
