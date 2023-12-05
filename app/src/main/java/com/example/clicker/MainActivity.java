@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
     public static final int REQUEST_CODE_SHOP = 1;
     public static final int REQUEST_CODE_CLICKER_SHOP = 2;
     private TextView title, points, clickMultiplier, clicksPerSecond;
-    private Button  shop, clickerShop;
+    private Button shop, clickerShop;
     private ImageButton clickbutton;
     private AppCompatButton btn1;
     private Handler clickHandler;
@@ -60,14 +60,14 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        title = (TextView)findViewById(R.id.title);
-        points = (TextView)findViewById(R.id.points);
-        clickMultiplier = (TextView)findViewById(R.id.clickMultiplier);
-        clicksPerSecond = (TextView)findViewById(R.id.clicksPerSecond);
-        clickSoundPlayer = MediaPlayer.create(this,R.raw.clicktone);
-        clickbutton = (ImageButton)findViewById(R.id.clickbutton);
-        shop = (Button)findViewById(R.id.shop);
-        clickerShop = (Button)findViewById(R.id.clickerShop);
+        title = (TextView) findViewById(R.id.title);
+        points = (TextView) findViewById(R.id.points);
+        clickMultiplier = (TextView) findViewById(R.id.clickMultiplier);
+        clicksPerSecond = (TextView) findViewById(R.id.clicksPerSecond);
+        clickSoundPlayer = MediaPlayer.create(this, R.raw.clicktone);
+        clickbutton = (ImageButton) findViewById(R.id.clickbutton);
+        shop = (Button) findViewById(R.id.shop);
+        clickerShop = (Button) findViewById(R.id.clickerShop);
 
         clickbutton.setEnabled(true);
         shop.setEnabled(true);
@@ -182,7 +182,27 @@ public class MainActivity extends Activity {
         }
     };
 
+
     private void updateScore(double s) {
-        points.setText(String.format("%.2f", s)  + " Dining Points");
+        String formattedScore = formatNumber(s);
+        points.setText(formattedScore + " Dining Points");
+    }
+
+    private String formatNumber(double num) {
+        if (num < 1000) {
+            return String.format("%.2f", num);
+        } else if (num < 1_000_000) {
+            return String.format("%.2fK", num / 1000);
+        } else if (num < 1_000_000_000) {
+            return String.format("%.2fM", num / 1_000_000);
+        } else if (num < 1_000_000_000_000L) {
+            return String.format("%.2fB", num / 1_000_000_000);
+        } else if (num < 1_000_000_000_000_000L) {
+            return String.format("%.2fT", num / 1_000_000_000_000L);
+        } else if (num < 1_000_000_000_000_000_000L) {
+            return String.format("%.2fQ", num / 1_000_000_000_000_000L);
+        } else {
+            return String.format("%.2fE", num / 1_000_000_000_000_000_000L);
+        }
     }
 }
