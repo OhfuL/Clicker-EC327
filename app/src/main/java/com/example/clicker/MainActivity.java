@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
     private Handler clickHandler;
     private final int TIME_INTERVAL_MILLIS = 1000;
     private MediaPlayer clickSoundPlayer;
-    double score = 66000d;
+    double score = 0;
     double multiplier = 1.0;
     double cps = 0;
     double cost = 100;
