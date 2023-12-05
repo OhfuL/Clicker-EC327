@@ -26,13 +26,13 @@
 
     <TextView
         android:id="@+id/building1"
-        android:layout_width="230dp"
+        android:layout_width="4000dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/back"
         android:layout_alignParentLeft="true"
         android:layout_gravity="center"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/rounded_background"
         android:padding="10dp"
         android:text="BU Students (0x) "
@@ -53,13 +53,13 @@
 
     <TextView
         android:id="@+id/building2"
-        android:layout_width="230dp"
+        android:layout_width="4000dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/building1"
         android:layout_alignParentLeft="true"
         android:layout_gravity="center"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/rounded_background"
         android:padding="10dp"
         android:text="Warren Towers (0x) "
@@ -80,7 +80,7 @@
 
     <TextView
         android:id="@+id/building3"
-        android:layout_width="230dp"
+        android:layout_width="4000dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/building2"
         android:layout_alignParentLeft="true"
@@ -107,7 +107,7 @@
 
     <TextView
         android:id="@+id/building4"
-        android:layout_width="230dp"
+        android:layout_width="4000dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/building3"
         android:layout_alignParentLeft="true"
@@ -130,11 +130,11 @@
         android:layout_below="@id/buyBuilding3"
         android:textSize="20dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="8dp"/>
 
     <TextView
         android:id="@+id/building5"
-        android:layout_width="230dp"
+        android:layout_width="4000dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/building4"
         android:layout_alignParentLeft="true"
@@ -161,7 +161,7 @@
 
     <TextView
         android:id="@+id/building6"
-        android:layout_width="230dp"
+        android:layout_width="4000dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/building5"
         android:layout_alignParentLeft="true"
@@ -184,11 +184,11 @@
         android:layout_below="@id/buyBuilding5"
         android:textSize="20dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="8dp"/>
 
     <TextView
         android:id="@+id/building7"
-        android:layout_width="230dp"
+        android:layout_width="4000dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/building6"
         android:layout_alignParentLeft="true"
@@ -208,17 +208,14 @@
         android:layout_below="@id/buyBuilding6"
         android:layout_alignParentRight="true"
         android:layout_gravity="end"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
         android:text="20000000"
         android:textSize="20dp" />
 
     <TextView
         android:id="@+id/building8"
-        android:layout_width="230dp"
+        android:layout_width="4000dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/building7"
         android:layout_alignParentLeft="true"
@@ -240,11 +237,12 @@
         android:layout_alignParentRight="true"
         android:layout_below="@id/buyBuilding7"
         android:textSize="20dp"
-        android:layout_marginRight="5dp" />
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/building9"
-        android:layout_width="230dp"
+        android:layout_width="4000dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/building8"
         android:layout_alignParentLeft="true"
@@ -267,11 +265,11 @@
         android:layout_below="@id/buyBuilding8"
         android:textSize="20dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="8dp"/>
 
     <TextView
         android:id="@+id/building10"
-        android:layout_width="230dp"
+        android:layout_width="4000dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/building9"
         android:layout_alignParentLeft="true"

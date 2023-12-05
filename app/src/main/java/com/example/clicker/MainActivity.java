@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.os.Handler;
+import android.widget.Toast;
+
+import androidx.appcompat.widget.AppCompatButton;
 
 public class MainActivity extends Activity {
 
@@ -26,6 +29,7 @@ public class MainActivity extends Activity {
     private TextView title, points, clickMultiplier, clicksPerSecond;
     private Button  shop, clickerShop;
     private ImageButton clickbutton;
+    private AppCompatButton btn1;
     private Handler clickHandler;
     private final int TIME_INTERVAL_MILLIS = 1000;
     private MediaPlayer clickSoundPlayer;
@@ -70,6 +74,15 @@ public class MainActivity extends Activity {
 
         clickHandler = new Handler();
         autoClickTick.run();
+
+        btn1 = findViewById(R.id.rules);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message = "Click Rhett to earn points and buy upgrades to increase clicking efficiency, creating a cycle of continuous progression.";
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
 
         clickbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
