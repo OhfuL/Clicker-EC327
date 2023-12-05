@@ -20,6 +20,7 @@ public class MainActivity extends Activity {
     public static final String TAG_BUILDING_COSTS = "buildingcosts";
     public static final String TAG_BUILDING_UPGRADE_COSTS = "buildingupgradecosts";
     public static final String TAG_BUILDING_UPGRADE_LEVELS = "buildingupgradelevels";
+    public static final String TAG_BUILDING_UPGRADE_MULTIPLIERS = "buildingupgrademultipliers";
     public static final int REQUEST_CODE_SHOP = 1;
     public static final int REQUEST_CODE_CLICKER_SHOP = 2;
     private TextView title, points, clickMultiplier, clicksPerSecond;
@@ -28,7 +29,7 @@ public class MainActivity extends Activity {
     private Handler clickHandler;
     private final int TIME_INTERVAL_MILLIS = 1000;
     private MediaPlayer clickSoundPlayer;
-    double score = 0;
+    double score = 66000d;
     double multiplier = 1.0;
     double cps = 0;
     double cost = 100;
@@ -36,8 +37,18 @@ public class MainActivity extends Activity {
     int[] buildingLevels = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     double[] buildingCosts = {15, 100, 1100, 12000, 130000, 1400000, 20000000, 330000000, 5100000000d, 75000000000d};
     int[] buildingUpgradeLevels = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    double[] buildingUpgradeMultipliers = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
     // FIX THESE VALUES ( BUILDING UPGRADE COSTS )
-    double[] buildingUpgradeCosts = {100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    double[] buildingUpgradeCosts = {500, 10000, 100000, 10000000d, 100000000d, 1000000000d, 10000000000d, 100000000000d,
+            5000, 25000, 50000, 2500000d, 5000000d, 250000000d, 500000000, 25000000000d, 50000000000d, 2500000000000d, 50000000000000d, 2500000000000000d, 50000000000000000d,
+            11000, 55000, 550000, 55000000d, 5500000000d, 55000000000d, 55000000000000d,
+            120000d, 600000d, 6000000d, 600000000d, 6000000000d, 6000000000000d, 6000000000000000d,
+            1300000d, 6500000d, 65000000d, 6500000000d, 6500000000000d, 650000000000000d, 65000000000000000d,
+            14000000d, 70000000d, 700000000d, 70000000000d, 7000000000000d, 700000000000000d, 700000000000000000d,
+            200000000d, 1000000000d, 10000000000d, 1000000000000d, 100000000000000d, 10000000000000000d, 10000000000000000000d,
+            33000000000d, 16500000000d, 165000000000d, 16500000000000d, 1650000000000000d, 165000000000000000d, 165000000000000000000d,
+            51000000000d, 255000000000d, 2550000000000d, 255000000000000d, 25500000000000000d, 2550000000000000000d, 2550000000000000000000d,
+            750000000000d, 3750000000d, 37500000000d, 3750000000000d, 375000000000000d, 37500000000000000d, 37500000000000000000d};
     final double[] buildingRates = {0.3, 1, 8, 47, 260, 1400, 7800, 44000, 260000, 1600000};
 
     @Override
@@ -95,6 +106,7 @@ public class MainActivity extends Activity {
                 clickerShopActivity.putExtra(TAG_LEVEL, level);
                 clickerShopActivity.putExtra(TAG_BUILDING_UPGRADE_COSTS, buildingUpgradeCosts);
                 clickerShopActivity.putExtra(TAG_BUILDING_UPGRADE_LEVELS, buildingUpgradeLevels);
+                clickerShopActivity.putExtra(TAG_BUILDING_UPGRADE_MULTIPLIERS, buildingUpgradeMultipliers);
                 startActivityForResult(clickerShopActivity, REQUEST_CODE_CLICKER_SHOP);
             }
         });
@@ -112,7 +124,7 @@ public class MainActivity extends Activity {
 
             cps = 0;
             for (int i = 0; i < buildingRates.length; ++i) {
-                cps += buildingLevels[i] * buildingRates[i];
+                cps += buildingLevels[i] * buildingRates[i] * buildingUpgradeMultipliers[i];
             }
 
             // Update UI or perform any other actions with the updated data
@@ -125,8 +137,15 @@ public class MainActivity extends Activity {
             multiplier = data.getDoubleExtra(TAG_MULTIPLIER, 1);
             buildingUpgradeCosts = data.getDoubleArrayExtra(TAG_BUILDING_UPGRADE_COSTS);
             buildingUpgradeLevels = data.getIntArrayExtra(TAG_BUILDING_UPGRADE_LEVELS);
+            buildingUpgradeMultipliers = data.getDoubleArrayExtra(TAG_BUILDING_UPGRADE_MULTIPLIERS);
+
+            cps = 0;
+            for (int i = 0; i < buildingRates.length; ++i) {
+                cps += buildingLevels[i] * buildingRates[i] * buildingUpgradeMultipliers[i];
+            }
 
             updateScore(score);
+            clicksPerSecond.setText("Clicks per Second: " + String.format("%.2f", cps));
             clickMultiplier.setText("Click Multiplier: " + String.format("%.2f", multiplier) + "x");
         }
     }
