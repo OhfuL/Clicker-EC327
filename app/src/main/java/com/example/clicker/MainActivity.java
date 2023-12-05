@@ -15,6 +15,8 @@ import androidx.appcompat.widget.AppCompatButton;
 
 public class MainActivity extends Activity {
 
+    AppCompatButton btn1;
+
     public static final String TAG_SCORE = "score";
     public static final String TAG_COST = "cost";
     public static final String TAG_MULTIPLIER = "multiplier";
@@ -123,6 +125,16 @@ public class MainActivity extends Activity {
                 startActivityForResult(clickerShopActivity, REQUEST_CODE_CLICKER_SHOP);
             }
         });
+
+        btn1 = findViewById(R.id.rules);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message = "Click Rhett to earn points and buy upgrades to increase clicking efficiency, creating a cycle of continuous progression.";
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 
     @Override
