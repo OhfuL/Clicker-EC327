@@ -15,7 +15,7 @@ import androidx.appcompat.widget.AppCompatButton;
 
 public class MainActivity extends Activity {
 
-
+    // Constant declarations for tag names and request codes
     public static final String TAG_SCORE = "score";
     public static final String TAG_COST = "cost";
     public static final String TAG_MULTIPLIER = "multiplier";
@@ -27,6 +27,9 @@ public class MainActivity extends Activity {
     public static final String TAG_BUILDING_UPGRADE_MULTIPLIERS = "buildingupgrademultipliers";
     public static final int REQUEST_CODE_SHOP = 1;
     public static final int REQUEST_CODE_CLICKER_SHOP = 2;
+
+
+    // UI components and game variables
     private TextView title, points, clickMultiplier, clicksPerSecond;
     private Button shop, clickerShop;
     private ImageButton clickbutton;
@@ -34,6 +37,9 @@ public class MainActivity extends Activity {
     private Handler clickHandler;
     private final int TIME_INTERVAL_MILLIS = 1000;
     private MediaPlayer clickSoundPlayer;
+
+
+    // Game state variables
     double score = 0;
     double multiplier = 1.0;
     double cps = 0;
@@ -43,7 +49,6 @@ public class MainActivity extends Activity {
     double[] buildingCosts = {15, 100, 1100, 12000, 130000, 1400000, 20000000, 330000000, 5100000000d, 75000000000d};
     int[] buildingUpgradeLevels = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     double[] buildingUpgradeMultipliers = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    // FIX THESE VALUES ( BUILDING UPGRADE COSTS )
     double[] buildingUpgradeCosts = {500, 10000, 100000, 10000000d, 100000000d, 1000000000d, 10000000000d, 100000000000d,
             5000, 25000, 50000, 2500000d, 5000000d, 250000000d, 500000000, 25000000000d, 50000000000d, 2500000000000d, 50000000000000d, 2500000000000000d, 50000000000000000d,
             11000, 55000, 550000, 55000000d, 5500000000d, 55000000000d, 55000000000000d,
@@ -61,6 +66,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // UI initialization
         title = (TextView) findViewById(R.id.title);
         points = (TextView) findViewById(R.id.points);
         clickMultiplier = (TextView) findViewById(R.id.clickMultiplier);
@@ -73,10 +79,13 @@ public class MainActivity extends Activity {
         clickbutton.setEnabled(true);
         shop.setEnabled(true);
 
+        // Handler for automatic clicks
         clickHandler = new Handler();
         autoClickTick.run();
 
         btn1 = findViewById(R.id.rules);
+
+        //Setting onClickListeners for buttons below
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,10 +145,12 @@ public class MainActivity extends Activity {
 
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        //Handles Requests from shop and clickershop
         if (requestCode == REQUEST_CODE_SHOP && resultCode == Activity.RESULT_OK) {
             // Retrieve updated data from the intent
             score = data.getDoubleExtra(TAG_SCORE, 0);
@@ -153,7 +164,7 @@ public class MainActivity extends Activity {
 
             // Update UI or perform any other actions with the updated data
             updateScore(score);
-            clicksPerSecond.setText("Clicks per Second: " + String.format("%.2f", cps));
+            clicksPerSecond.setText("Clicks per Second: " + formatNumber(cps));
         } else if (requestCode == REQUEST_CODE_CLICKER_SHOP && resultCode == Activity.RESULT_OK) {
             score = data.getDoubleExtra(TAG_SCORE, 0);
             cost = data.getDoubleExtra(TAG_COST, 100);
@@ -169,11 +180,12 @@ public class MainActivity extends Activity {
             }
 
             updateScore(score);
-            clicksPerSecond.setText("Clicks per Second: " + String.format("%.2f", cps));
-            clickMultiplier.setText("Click Multiplier: " + String.format("%.2f", multiplier) + "x");
+            clicksPerSecond.setText("Clicks per Second: " + formatNumber(cps));
+            clickMultiplier.setText("Click Multiplier: " + formatNumber(multiplier) + "x");
         }
     }
 
+    // Update score automatically at set interval
     private Runnable autoClickTick = new Runnable() {
         @Override
         public void run() {
@@ -184,6 +196,8 @@ public class MainActivity extends Activity {
     };
 
 
+
+    //Updates displayed score using x.xx Number format defined the function formatNumber
     private void updateScore(double s) {
         String formattedScore = formatNumber(s);
         points.setText(formattedScore + " Dining Points");

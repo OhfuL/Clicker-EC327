@@ -64,7 +64,7 @@ public class ClickerShop extends Activity {
 
 
         clickMultiplier.setText("Click Multiplier (" + level + "x)");
-        buyMultiplier.setText("" + String.format("%.2f", cost));
+        buyMultiplier.setText(formatNumber(cost));
 
         // Update the text on the buttons to display the current costs - NAMES OF THE BUILDING UPGRADES IN THE SHOP
         building1Upgrade.setText("BU Students (" + buildingUpgradeLevels[0] + "x)");
@@ -79,16 +79,17 @@ public class ClickerShop extends Activity {
         building10Upgrade.setText("Off Campus (" + buildingUpgradeLevels[9] + "x)");
 
         // Update the text on the buttons to display the current costs - COSTS OF THE BUILDING UPGRADES IN THE SHOP
-        buy1Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[0]]));
-        buy2Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[1] + 8]));
-        buy3Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[2] + 21]));
-        buy4Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[3] + 28]));
-        buy5Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[4] + 35]));
-        buy6Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[5] + 42]));
-        buy7Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[6] + 49]));
-        buy8Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[7] + 56]));
-        buy9Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[8] + 63]));
-        buy10Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[9] + 70]));
+        //buy1Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[0]]));
+        buy1Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[0]])));
+        buy2Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[1] + 8])));
+        buy3Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[2] + 21])));
+        buy4Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[3] + 28])));
+        buy5Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[4] + 35])));
+        buy6Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[5] + 42])));
+        buy7Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[6] + 49])));
+        buy8Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[7] + 56])));
+        buy9Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[8] + 63])));
+        buy10Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[9] + 70])));
 
 
         View.OnClickListener buyButtonClickListener = new View.OnClickListener() {
@@ -177,11 +178,12 @@ public class ClickerShop extends Activity {
         if (score >= cost) {
             score -= cost;
             multiplier *= 2;
-            cost *= 100;
+            cost *= 10;
             level++;
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             clickMultiplier.setText("Click Multiplier (" + level + "x)");
-            buyMultiplier.setText("" + String.format("%.2f", cost));
+            buyMultiplier.setText("" + formatNumber(cost));
         } else {
             Toast.makeText(this, "You don't have enough points!", Toast.LENGTH_SHORT).show();
         }
@@ -203,12 +205,13 @@ public class ClickerShop extends Activity {
             }
 
             buildingUpgradeLevels[0] += 1;
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             building1Upgrade.setText("BU Students (" + buildingUpgradeLevels[0] + "x)");
             if (buildingUpgradeLevels[0] == 8) {
                 buy1Upgrade.setText("MAX LVL");
             } else {
-                buy1Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[0]]));
+                buy1Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[0]]));
             }
         } else if (buildingUpgradeLevels[0] > 7) {
             Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
@@ -226,12 +229,13 @@ public class ClickerShop extends Activity {
             buildingUpgradeMultipliers[1] *= 2;
 
             buildingUpgradeLevels[1] += 1;
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             building2Upgrade.setText("Warren Towers (" + buildingUpgradeLevels[1] + "x)");
             if (buildingUpgradeLevels[1] == 13) {
                 buy2Upgrade.setText("MAX LVL");
             } else {
-                buy2Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[1] + 8]));
+                buy2Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[1] + 8]));
             }
         } else if (buildingUpgradeLevels[1] > 12) {
             Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
@@ -248,12 +252,13 @@ public class ClickerShop extends Activity {
             buildingUpgradeMultipliers[2] *= 2;
 
             buildingUpgradeLevels[2] += 1;
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             building3Upgrade.setText("West Dorms (" + buildingUpgradeLevels[2] + "x)");
             if (buildingUpgradeLevels[2] == 7) {
                 buy3Upgrade.setText("MAX LVL");
             } else {
-                buy3Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[2] + 21]));
+                buy3Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[2] + 21]));
             }
         } else if (buildingUpgradeLevels[2] > 6) {
             Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
@@ -270,12 +275,13 @@ public class ClickerShop extends Activity {
             buildingUpgradeMultipliers[3] *= 2;
 
             buildingUpgradeLevels[3] += 1;
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             building4Upgrade.setText("1019 Comm Ave (" + buildingUpgradeLevels[3] + "x)");
             if (buildingUpgradeLevels[2] == 7) {
                 buy4Upgrade.setText("MAX LVL");
             } else {
-                buy4Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[3] + 28]));
+                buy4Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[3] + 28]));
             }
         } else if (buildingUpgradeLevels[3] > 6) {
             Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
@@ -292,12 +298,13 @@ public class ClickerShop extends Activity {
             buildingUpgradeMultipliers[4] *= 2;
 
             buildingUpgradeLevels[4] += 1;
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             building5Upgrade.setText("Hojo (" + buildingUpgradeLevels[4] + "x)");
             if (buildingUpgradeLevels[4] == 7) {
                 buy5Upgrade.setText("MAX LVL");
             } else {
-                buy5Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[4] + 35]));
+                buy5Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[4] + 35]));
             }
         } else if (buildingUpgradeLevels[4] > 6) {
             Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
@@ -314,12 +321,13 @@ public class ClickerShop extends Activity {
             buildingUpgradeMultipliers[5] *= 2;
 
             buildingUpgradeLevels[5] += 1;
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             building6Upgrade.setText("Kilachand (" + buildingUpgradeLevels[5] + "x)");
             if (buildingUpgradeLevels[5] == 7) {
                 buy6Upgrade.setText("MAX LVL");
             } else {
-                buy6Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[5] + 42]));
+                buy6Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[5] + 42]));
             }
         } else if (buildingUpgradeLevels[5] > 6) {
             Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
@@ -336,12 +344,13 @@ public class ClickerShop extends Activity {
             buildingUpgradeMultipliers[6] *= 2;
 
             buildingUpgradeLevels[6] += 1;
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             building7Upgrade.setText("Myles Standish (" + buildingUpgradeLevels[6] + "x)");
             if (buildingUpgradeLevels[6] == 7) {
                 buy7Upgrade.setText("MAX LVL");
             } else {
-                buy7Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[6] + 49]));
+                buy7Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[6] + 49]));
             }
         } else if (buildingUpgradeLevels[6] > 6) {
             Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
@@ -359,12 +368,13 @@ public class ClickerShop extends Activity {
             buildingUpgradeMultipliers[7] *= 2;
 
             buildingUpgradeLevels[7] += 1;
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             building8Upgrade.setText("Stuvi 1 (" + buildingUpgradeLevels[7] + "x)");
             if (buildingUpgradeLevels[7] == 7) {
                 buy8Upgrade.setText("MAX LVL");
             } else {
-                buy8Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[7] + 56]));
+                buy8Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[7] + 56]));
             }
         } else if (buildingUpgradeLevels[7] > 6) {
             Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
@@ -381,12 +391,13 @@ public class ClickerShop extends Activity {
             buildingUpgradeMultipliers[8] *= 2;
 
             buildingUpgradeLevels[8] += 1;
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             building9Upgrade.setText("Stuvi 2 (" + buildingUpgradeLevels[8] + "x)");
             if (buildingUpgradeLevels[8] == 7) {
                 buy9Upgrade.setText("MAX LVL");
             } else {
-                buy9Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[8] + 63]));
+                buy9Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[8] + 63]));
             }
         } else if (buildingUpgradeLevels[8] > 6) {
             Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
@@ -403,12 +414,13 @@ public class ClickerShop extends Activity {
             buildingUpgradeMultipliers[9] *= 2;
 
             buildingUpgradeLevels[9] += 1;
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             building10Upgrade.setText("Off Campus (" + buildingUpgradeLevels[9] + "x)");
             if (buildingUpgradeLevels[9] == 7) {
                 buy10Upgrade.setText("MAX LVL");
             } else {
-                buy10Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[9] + 70]));
+                buy10Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[9] + 70]));
             }
         } else if (buildingUpgradeLevels[9] > 6) {
             Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
