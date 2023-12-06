@@ -14,7 +14,7 @@ Downloading the File:
   Right-click and choose "Save as" to download the file to your local system.
   
 Installing Android Studio:
-  If you have not yet downloaded Android Studio follow the steps on their [offical webstie]https://developer.android.com/studio
+  If you have not yet downloaded Android Studio follow the steps on their [offical webstie](https://developer.android.com/studio)
 
 Importing the File into Android Studio:
   Open Android Studio
