@@ -129,7 +129,7 @@ public class MainActivity extends Activity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String message = "Click Rhett to earn points and buy upgrades to increase clicking efficiency, creating a cycle of continuous progression.";
+                String message = "Click Rhett to earn points and buy upgrades to increase clicking efficiency.";
                 Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
