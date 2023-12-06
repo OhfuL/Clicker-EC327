@@ -62,8 +62,6 @@ public class Shop extends Activity {
         // Update the text views to display the current score and multiplier
         //points.setText(String.format("%.2f", score) + " Dining Points"); ////old
 
-
-
         // Update the text on the buttons to display the current costs - NAMES OF THE BUILDINGS IN THE SHOP
         building1.setText("BU Students (" + buildingLevels[0] + "x)");
         building2.setText("Warren Towers (" + buildingLevels[1] + "x)");
@@ -77,16 +75,16 @@ public class Shop extends Activity {
         building10.setText("Off Campus (" + buildingLevels[9] + "x)");
 
         // Update the text on the buttons to display the current costs - COSTS OF THE BUILDINGS IN THE SHOP
-        buyBuilding1.setText("" + String.format(formatNumber(buildingCosts[0])));
-        buyBuilding2.setText("" + String.format(formatNumber(buildingCosts[1])));
-        buyBuilding3.setText("" + String.format(formatNumber(buildingCosts[2])));
-        buyBuilding4.setText("" + String.format(formatNumber(buildingCosts[3])));
-        buyBuilding5.setText("" + String.format(formatNumber(buildingCosts[4])));
-        buyBuilding6.setText("" + String.format(formatNumber(buildingCosts[5])));
-        buyBuilding7.setText("" + String.format(formatNumber(buildingCosts[6])));
-        buyBuilding8.setText("" + String.format(formatNumber(buildingCosts[7])));
-        buyBuilding9.setText("" + String.format(formatNumber(buildingCosts[8])));
-        buyBuilding10.setText("" + String.format(formatNumber(buildingCosts[9])));
+        buyBuilding1.setText(formatNumber(buildingCosts[0]));
+        buyBuilding2.setText(formatNumber(buildingCosts[1]));
+        buyBuilding3.setText(formatNumber(buildingCosts[2]));
+        buyBuilding4.setText(formatNumber(buildingCosts[3]));
+        buyBuilding5.setText(formatNumber(buildingCosts[4]));
+        buyBuilding6.setText(formatNumber(buildingCosts[5]));
+        buyBuilding7.setText(formatNumber(buildingCosts[6]));
+        buyBuilding8.setText(formatNumber(buildingCosts[7]));
+        buyBuilding9.setText(formatNumber(buildingCosts[8]));
+        buyBuilding10.setText(formatNumber(buildingCosts[9]));
 
 
         // Create a listener for the buy buttons

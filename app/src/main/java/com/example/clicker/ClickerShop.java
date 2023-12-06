@@ -64,7 +64,7 @@ public class ClickerShop extends Activity {
 
 
         clickMultiplier.setText("Click Multiplier (" + level + "x)");
-        buyMultiplier.setText("" + String.format("%.2f", cost));
+        buyMultiplier.setText(formatNumber(cost));
 
         // Update the text on the buttons to display the current costs - NAMES OF THE BUILDING UPGRADES IN THE SHOP
         building1Upgrade.setText("BU Students (" + buildingUpgradeLevels[0] + "x)");
@@ -81,7 +81,6 @@ public class ClickerShop extends Activity {
         // Update the text on the buttons to display the current costs - COSTS OF THE BUILDING UPGRADES IN THE SHOP
         //buy1Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[0]]));
         buy1Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[0]])));
-
         buy2Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[1] + 8])));
         buy3Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[2] + 21])));
         buy4Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[3] + 28])));
