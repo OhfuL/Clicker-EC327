@@ -11,10 +11,13 @@ import android.widget.Toast;
 
 public class Shop extends Activity {
 
+    // UI components: TextViews for buildings, Buttons for purchasing buildings, and a TextView for points
     private TextView building1, building2, building3, building4, building5, building6, building7, building8, building9, building10;
     private Button buyBuilding1, buyBuilding2, buyBuilding3, buyBuilding4, buyBuilding5, buyBuilding6, buyBuilding7, buyBuilding8, buyBuilding9, buyBuilding10;
     private TextView points;
     private Button back;
+
+    // Variables for game state: score, building costs, and building levels
     private double score;
     private double[] buildingCosts;
     private int[] buildingLevels;
@@ -57,7 +60,9 @@ public class Shop extends Activity {
 
 
         // Update the text views to display the current score and multiplier
-        points.setText(String.format("%.2f", score) + " Dining Points");
+        //points.setText(String.format("%.2f", score) + " Dining Points"); ////old
+
+
 
         // Update the text on the buttons to display the current costs - NAMES OF THE BUILDINGS IN THE SHOP
         building1.setText("BU Students (" + buildingLevels[0] + "x)");
@@ -72,16 +77,16 @@ public class Shop extends Activity {
         building10.setText("Off Campus (" + buildingLevels[9] + "x)");
 
         // Update the text on the buttons to display the current costs - COSTS OF THE BUILDINGS IN THE SHOP
-        buyBuilding1.setText("" + String.format("%.2f", buildingCosts[0]));
-        buyBuilding2.setText("" + String.format("%.2f", buildingCosts[1]));
-        buyBuilding3.setText("" + String.format("%.2f", buildingCosts[2]));
-        buyBuilding4.setText("" + String.format("%.2f", buildingCosts[3]));
-        buyBuilding5.setText("" + String.format("%.2f", buildingCosts[4]));
-        buyBuilding6.setText("" + String.format("%.2f", buildingCosts[5]));
-        buyBuilding7.setText("" + String.format("%.2f", buildingCosts[6]));
-        buyBuilding8.setText("" + String.format("%.2f", buildingCosts[7]));
-        buyBuilding9.setText("" + String.format("%.2f", buildingCosts[8]));
-        buyBuilding10.setText("" + String.format("%.2f", buildingCosts[9]));
+        buyBuilding1.setText("" + String.format(formatNumber(buildingCosts[0])));
+        buyBuilding2.setText("" + String.format(formatNumber(buildingCosts[1])));
+        buyBuilding3.setText("" + String.format(formatNumber(buildingCosts[2])));
+        buyBuilding4.setText("" + String.format(formatNumber(buildingCosts[3])));
+        buyBuilding5.setText("" + String.format(formatNumber(buildingCosts[4])));
+        buyBuilding6.setText("" + String.format(formatNumber(buildingCosts[5])));
+        buyBuilding7.setText("" + String.format(formatNumber(buildingCosts[6])));
+        buyBuilding8.setText("" + String.format(formatNumber(buildingCosts[7])));
+        buyBuilding9.setText("" + String.format(formatNumber(buildingCosts[8])));
+        buyBuilding10.setText("" + String.format(formatNumber(buildingCosts[9])));
 
 
         // Create a listener for the buy buttons
@@ -115,8 +120,32 @@ public class Shop extends Activity {
             }
         });
 
+        points.setText(formatNumber(score) + " Dining Points");
+
     }
 
+    //Same function from main to define number display format
+    private String formatNumber(double num) {
+        if (num < 1000) {
+            return String.format("%.2f", num);
+        } else if (num < 1_000_000) {
+            return String.format("%.2fK", num / 1000);
+        } else if (num < 1_000_000_000) {
+            return String.format("%.2fM", num / 1_000_000);
+        } else if (num < 1_000_000_000_000L) {
+            return String.format("%.2fB", num / 1_000_000_000);
+        } else if (num < 1_000_000_000_000_000L) {
+            return String.format("%.2fT", num / 1_000_000_000_000L);
+        } else if (num < 1_000_000_000_000_000_000L) {
+            return String.format("%.2fQ", num / 1_000_000_000_000_000L);
+        } else {
+            return String.format("%.2fE", num / 1_000_000_000_000_000_000L);
+        }
+    }
+
+
+
+    // Sets onClickListeners for all buy buttons
     private void handleBuyButtonClick(View v) {
         if (v == buyBuilding1) {
             handleBuyBuilding1();
@@ -141,20 +170,16 @@ public class Shop extends Activity {
         }
     }
 
+
+    //handle building purchases below
     private void handleBuyBuilding1() {
-        // Check if the player has enough score to make the purchase
         if (score >= buildingCosts[0]) {
-            // Deduct the cost from the score
             score -= buildingCosts[0];
-            // Update the text view to display the updated score
-            points.setText(String.format("%.2f", score) + " Dining Points");
-            // Increase the cost of the item by 15%
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             buildingCosts[0] *= 1.15;
-            // Update the text on the button to display the new cost
-            buyBuilding1.setText("" + String.format("%.2f", buildingCosts[0]));
-            // Increase the level of the upgrade by 1
+            buyBuilding1.setText("" + formatNumber(buildingCosts[0]));
             buildingLevels[0]++;
-            // Update the text on the label to display the new level
             building1.setText("BU Students (" + buildingLevels[0] + "x)");
         } else {
             // Display a toast message indicating that the player doesn't have enough score
@@ -165,9 +190,10 @@ public class Shop extends Activity {
     private void handleBuyBuilding2() {
         if (score >= buildingCosts[1]) {
             score -= buildingCosts[1];
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             buildingCosts[1] *= 1.15;
-            buyBuilding2.setText("" + String.format("%.2f", buildingCosts[1]));
+            buyBuilding2.setText("" + formatNumber(buildingCosts[1]));
             buildingLevels[1]++;
             building2.setText("Warren Towers (" + buildingLevels[1] + "x)");
         } else {
@@ -178,9 +204,10 @@ public class Shop extends Activity {
     private void handleBuyBuilding3() {
         if (score >= buildingCosts[2]) {
             score -= buildingCosts[2];
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             buildingCosts[2] *= 1.15;
-            buyBuilding3.setText("" + String.format("%.2f", buildingCosts[2]));
+            buyBuilding3.setText("" + formatNumber(buildingCosts[2]));
             buildingLevels[2]++;
             building3.setText("West Dorms (" + buildingLevels[2] + "x)");
         } else {
@@ -191,9 +218,10 @@ public class Shop extends Activity {
     private void handleBuyBuilding4() {
         if (score >= buildingCosts[3]) {
             score -= buildingCosts[3];
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             buildingCosts[3] *= 1.15;
-            buyBuilding4.setText("" + String.format("%.2f", buildingCosts[3]));
+            buyBuilding4.setText("" + formatNumber(buildingCosts[3]));
             buildingLevels[3]++;
             building4.setText("1019 Comm Ave (" + buildingLevels[3] + "x)");
         } else {
@@ -204,9 +232,10 @@ public class Shop extends Activity {
     private void handleBuyBuilding5() {
         if (score >= buildingCosts[4]) {
             score -= buildingCosts[4];
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             buildingCosts[4] *= 1.15;
-            buyBuilding5.setText("" + String.format("%.2f", buildingCosts[4]));
+            buyBuilding5.setText("" + formatNumber(buildingCosts[4]));
             buildingLevels[4]++;
             building5.setText("Hojo (" + buildingLevels[4] + "x)");
         } else {
@@ -217,9 +246,10 @@ public class Shop extends Activity {
     private void handleBuyBuilding6() {
         if (score >= buildingCosts[5]) {
             score -= buildingCosts[5];
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             buildingCosts[5] *= 1.15;
-            buyBuilding6.setText("" + String.format("%.2f", buildingCosts[5]));
+            buyBuilding6.setText("" + formatNumber(buildingCosts[5]));
             buildingLevels[5]++;
             building6.setText("Kilachand (" + buildingLevels[5] + "x)");
         } else {
@@ -230,9 +260,10 @@ public class Shop extends Activity {
     private void handleBuyBuilding7() {
         if (score >= buildingCosts[6]) {
             score -= buildingCosts[6];
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             buildingCosts[6] *= 1.15;
-            buyBuilding7.setText("" + String.format("%.2f", buildingCosts[6]));
+            buyBuilding7.setText("" + formatNumber(buildingCosts[6]));
             buildingLevels[6]++;
             building7.setText("Myles Standish (" + buildingLevels[6] + "x)");
         } else {
@@ -243,9 +274,10 @@ public class Shop extends Activity {
     private void handleBuyBuilding8() {
         if (score >= buildingCosts[7]) {
             score -= buildingCosts[7];
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             buildingCosts[7] *= 1.15;
-            buyBuilding8.setText("" + String.format("%.2f", buildingCosts[7]));
+            buyBuilding8.setText("" + formatNumber(buildingCosts[7]));
             buildingLevels[7]++;
             building8.setText("Stuvi 1 (" + buildingLevels[7] + "x)");
         } else {
@@ -256,9 +288,10 @@ public class Shop extends Activity {
     private void handleBuyBuilding9() {
         if (score >= buildingCosts[8]) {
             score -= buildingCosts[8];
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             buildingCosts[8] *= 1.15;
-            buyBuilding9.setText("" + String.format("%.2f", buildingCosts[8]));
+            buyBuilding9.setText("" + formatNumber(buildingCosts[8]));
             buildingLevels[8]++;
             building9.setText("Stuvi 2 (" + buildingLevels[8] + "x)");
         } else {
@@ -269,9 +302,10 @@ public class Shop extends Activity {
     private void handleBuyBuilding10() {
         if (score >= buildingCosts[9]) {
             score -= buildingCosts[9];
-            points.setText(String.format("%.2f", score) + " Dining Points");
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
             buildingCosts[9] *= 1.15;
-            buyBuilding10.setText("" + String.format("%.2f", buildingCosts[9]));
+            buyBuilding10.setText("" + formatNumber(buildingCosts[9]));
             buildingLevels[9]++;
             building10.setText("Off Campus (" + buildingLevels[9] + "x)");
         } else {

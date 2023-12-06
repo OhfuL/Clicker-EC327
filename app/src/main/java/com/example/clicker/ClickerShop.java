@@ -17,7 +17,8 @@ public class ClickerShop extends Activity {
     private int level;
     private double[] buildingUpgradeCosts;
     private int[] buildingUpgradeLevels;
-    double[] buildingMultiplier;
+    private double[] buildingUpgradeMultipliers;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +58,13 @@ public class ClickerShop extends Activity {
         multiplier = intent.getDoubleExtra(MainActivity.TAG_MULTIPLIER, 1);
         buildingUpgradeLevels = intent.getIntArrayExtra(MainActivity.TAG_BUILDING_UPGRADE_LEVELS);
         buildingUpgradeCosts = intent.getDoubleArrayExtra(MainActivity.TAG_BUILDING_UPGRADE_COSTS);
+        buildingUpgradeMultipliers = intent.getDoubleArrayExtra(MainActivity.TAG_BUILDING_UPGRADE_MULTIPLIERS);
 
-        points.setText(String.format("%.2f", score) + " Dining Points");
+        points.setText(formatNumber(score) + " Dining Points");
+
+
+        clickMultiplier.setText("Click Multiplier (" + level + "x)");
+        buyMultiplier.setText("" + String.format("%.2f", cost));
 
         // Update the text on the buttons to display the current costs - NAMES OF THE BUILDING UPGRADES IN THE SHOP
         building1Upgrade.setText("BU Students (" + buildingUpgradeLevels[0] + "x)");
@@ -70,19 +76,21 @@ public class ClickerShop extends Activity {
         building7Upgrade.setText("Myles Standish (" + buildingUpgradeLevels[6] + "x)");
         building8Upgrade.setText("Stuvi 1 (" + buildingUpgradeLevels[7] + "x)");
         building9Upgrade.setText("Stuvi 2 (" + buildingUpgradeLevels[8] + "x)");
-        building1Upgrade.setText("Off Campus (" + buildingUpgradeLevels[9] + "x)");
+        building10Upgrade.setText("Off Campus (" + buildingUpgradeLevels[9] + "x)");
 
         // Update the text on the buttons to display the current costs - COSTS OF THE BUILDING UPGRADES IN THE SHOP
-        buy1Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[0]));
-        buy2Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[1]));
-        buy3Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[2]));
-        buy4Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[3]));
-        buy5Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[4]));
-        buy6Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[5]));
-        buy7Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[6]));
-        buy8Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[7]));
-        buy9Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[8]));
-        buy10Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[9]));
+        //buy1Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[buildingUpgradeLevels[0]]));
+        buy1Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[0]])));
+
+        buy2Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[1] + 8])));
+        buy3Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[2] + 21])));
+        buy4Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[3] + 28])));
+        buy5Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[4] + 35])));
+        buy6Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[5] + 42])));
+        buy7Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[6] + 49])));
+        buy8Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[7] + 56])));
+        buy9Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[8] + 63])));
+        buy10Upgrade.setText("" + String.format(formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[9] + 70])));
 
 
         View.OnClickListener buyButtonClickListener = new View.OnClickListener() {
@@ -92,6 +100,7 @@ public class ClickerShop extends Activity {
             }
         };
 
+        buyMultiplier.setOnClickListener(buyButtonClickListener);
         buy1Upgrade.setOnClickListener(buyButtonClickListener);
         buy2Upgrade.setOnClickListener(buyButtonClickListener);
         buy3Upgrade.setOnClickListener(buyButtonClickListener);
@@ -114,77 +123,99 @@ public class ClickerShop extends Activity {
                 resultIntent.putExtra(MainActivity.TAG_LEVEL, level);
                 resultIntent.putExtra(MainActivity.TAG_BUILDING_UPGRADE_COSTS, buildingUpgradeCosts);
                 resultIntent.putExtra(MainActivity.TAG_BUILDING_UPGRADE_LEVELS, buildingUpgradeLevels);
+                resultIntent.putExtra(MainActivity.TAG_BUILDING_UPGRADE_MULTIPLIERS, buildingUpgradeMultipliers);
                 setResult(Activity.RESULT_OK, resultIntent);
                 finish();
             }
         });
     }
 
+    private String formatNumber(double num) {
+        if (num < 1000) {
+            return String.format("%.2f", num);
+        } else if (num < 1_000_000) {
+            return String.format("%.2fK", num / 1000);
+        } else if (num < 1_000_000_000) {
+            return String.format("%.2fM", num / 1_000_000);
+        } else if (num < 1_000_000_000_000L) {
+            return String.format("%.2fB", num / 1_000_000_000);
+        } else if (num < 1_000_000_000_000_000L) {
+            return String.format("%.2fT", num / 1_000_000_000_000L);
+        } else if (num < 1_000_000_000_000_000_000L) {
+            return String.format("%.2fQ", num / 1_000_000_000_000_000L);
+        } else {
+            return String.format("%.2fE", num / 1_000_000_000_000_000_000L);
+        }
+    }
+
     private void handleBuyButtonClick(View v) {
-        if (v == building1Upgrade) {
+        if (v == buyMultiplier) {
+            handleBuyMultiplier();
+        } else if (v == buy1Upgrade) {
             handleBuyButtonClick1();
-        } else if (v == building2Upgrade) {
+        } else if (v == buy2Upgrade) {
             handleBuyButtonClick2();
-        } else if (v == building3Upgrade) {
+        } else if (v == buy3Upgrade) {
             handleBuyButtonClick3();
-        } else if (v == building4Upgrade) {
+        } else if (v == buy4Upgrade) {
             handleBuyButtonClick4();
-        } else if (v == building5Upgrade) {
+        } else if (v == buy5Upgrade) {
             handleBuyButtonClick5();
-        } else if (v == building6Upgrade) {
+        } else if (v == buy6Upgrade) {
             handleBuyButtonClick6();
-        } else if (v == building7Upgrade) {
+        } else if (v == buy7Upgrade) {
             handleBuyButtonClick7();
-        } else if (v == building8Upgrade) {
+        } else if (v == buy8Upgrade) {
             handleBuyButtonClick8();
-        } else if (v == building9Upgrade) {
+        } else if (v == buy9Upgrade) {
             handleBuyButtonClick9();
-        } else if (v == building10Upgrade) {
+        } else if (v == buy10Upgrade) {
             handleBuyButtonClick10();
         }
     }
 
     //physical clicking upgrade
-    private void handleBuyButtonClick1(){
-        if (score >= buildingUpgradeCosts[0]){
-            score -= buildingUpgradeCosts[0];
-            multiplier += buildingUpgradeLevels[0];
-            buildingUpgradeLevels[0] += 1;
-
-            // Update building price based on upgrade level
-            if (buildingUpgradeLevels[0] == 1) {
-                buildingUpgradeCosts[0] = 500d;
-            } else if (buildingUpgradeLevels[0] == 2) {
-                buildingUpgradeCosts[0] = 10000d;
-            } else if (buildingUpgradeLevels[0] == 3) {
-                buildingUpgradeCosts[0] = 100000d;
-            } else if (buildingUpgradeLevels[0] == 4) {
-                buildingUpgradeCosts[0] = 10000000d;
-            } else if (buildingUpgradeLevels[0] == 5) {
-                buildingUpgradeCosts[0] = 100000000d;
-            } else if (buildingUpgradeLevels[0] == 6) {
-                buildingUpgradeCosts[0] = 1000000000d;
-            } else if (buildingUpgradeLevels[0] == 7) {
-                buildingUpgradeCosts[0] = 10000000000d;
-            } else if (buildingUpgradeLevels[0] == 8) {
-                buildingUpgradeCosts[0] = 100000000000d;
-            }
+    private void handleBuyMultiplier() {
+        if (score >= cost) {
+            score -= cost;
+            multiplier *= 2;
+            cost *= 10;
+            level++;
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
+            clickMultiplier.setText("Click Multiplier (" + level + "x)");
+            buyMultiplier.setText("" + formatNumber(cost));
+        } else {
+            Toast.makeText(this, "You don't have enough points!", Toast.LENGTH_SHORT).show();
+        }
+    }
+    private void handleBuyButtonClick1() {
+        int currLevel = buildingUpgradeLevels[0];
+        if (score >= buildingUpgradeCosts[currLevel] && currLevel <= 7) {
+            score -= buildingUpgradeCosts[currLevel];
 
             // Update multiplier based on upgrade level
-            if (buildingUpgradeLevels[0] <= 3) {
-                multiplier *= 2;
-            } else if (buildingUpgradeLevels[0] == 4) {
-                multiplier *= 10;
-            } else if (buildingUpgradeLevels[0] == 5) {
-                multiplier *= 10;
-            } else if (buildingUpgradeLevels[0] >= 6 && buildingUpgradeLevels[0] <= 8) {
-                multiplier *= 20;
+            if (currLevel < 3) {
+                buildingUpgradeMultipliers[0] *= 2;
+            } else if (currLevel == 3) {
+                buildingUpgradeMultipliers[0] *= 10;
+            } else if (currLevel == 4) {
+                buildingUpgradeMultipliers[0] *= 10;
+            } else if (currLevel >= 5 && currLevel <= 7) {
+                buildingUpgradeMultipliers[0] *= 20;
             }
 
-            building1Upgrade.setText("Students Multiplier (" + buildingMultiplier[0] + "x)"); // Update the text on the button to amount x
-            buy1Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[0]));
-            points.setText("" + String.format("%.2f", score));
-            clickMultiplier.setText("" + String.format("%.2f", multiplier));
+            buildingUpgradeLevels[0] += 1;
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
+            building1Upgrade.setText("BU Students (" + buildingUpgradeLevels[0] + "x)");
+            if (buildingUpgradeLevels[0] == 8) {
+                buy1Upgrade.setText("MAX LVL");
+            } else {
+                buy1Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[0]]));
+            }
+        } else if (buildingUpgradeLevels[0] > 7) {
+            Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "You don't have enough points!", Toast.LENGTH_SHORT).show();
         }
@@ -192,300 +223,211 @@ public class ClickerShop extends Activity {
 
     //able to be upgraded further than any other upgrade
     private void handleBuyButtonClick2() {
-        if (score >= buildingUpgradeCosts[1]) {
-            score -= buildingUpgradeCosts[1];
+        int currLevel = buildingUpgradeLevels[1];
+        if (score >= buildingUpgradeCosts[currLevel + 8] && currLevel <= 12) {
+            score -= buildingUpgradeCosts[currLevel + 8];
 
-            if (buildingUpgradeLevels[1] == 1) {
-                buildingUpgradeCosts[1] = 5000d;
-            }else if (buildingUpgradeLevels[1] == 2) {
-                buildingUpgradeCosts[1] = 25000d;
-            } else if (buildingUpgradeLevels[1] == 3) {
-                buildingUpgradeCosts[1] = 50000d;
-            } else if (buildingUpgradeLevels[1] == 4) {
-                buildingUpgradeCosts[1] = 2500000d;
-            } else if (buildingUpgradeLevels[1] == 5) {
-                buildingUpgradeCosts[1] = 5000000d;
-            } else if (buildingUpgradeLevels[1] == 6) {
-                buildingUpgradeCosts[1] = 250000000d;
-            } else if (buildingUpgradeLevels[1] == 7) {
-                buildingUpgradeCosts[1] = 500000000;
-            } else if (buildingUpgradeLevels[1] == 8) {
-                buildingUpgradeCosts[1] = 25000000000d;
-            } else if (buildingUpgradeLevels[1] == 9) {
-                buildingUpgradeCosts[1] = 50000000000d;
-            } else if (buildingUpgradeLevels[1] == 10) {
-                buildingUpgradeCosts[1] = 2500000000000d;
-            } else if (buildingUpgradeLevels[1] == 11) {
-                buildingUpgradeCosts[1] = 50000000000000d;
-            } else if (buildingUpgradeLevels[1] == 12) {
-                buildingUpgradeCosts[1] = 2500000000000000d;
-            } else if (buildingUpgradeLevels[1] == 13) {
-                buildingUpgradeCosts[1] = 50000000000000000d;
-            }
+            buildingUpgradeMultipliers[1] *= 2;
+
             buildingUpgradeLevels[1] += 1;
-            buildingMultiplier[0] *= 2; // Double the multiplier
-
-            building2Upgrade.setText("Warren Multiplier (" + buildingMultiplier[1] + "x)");
-            buy2Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[1]));
-            points.setText("" + String.format("%.2f", score));
-            clickMultiplier.setText("" + String.format("%.2f", multiplier));
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
+            building2Upgrade.setText("Warren Towers (" + buildingUpgradeLevels[1] + "x)");
+            if (buildingUpgradeLevels[1] == 13) {
+                buy2Upgrade.setText("MAX LVL");
+            } else {
+                buy2Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[1] + 8]));
+            }
+        } else if (buildingUpgradeLevels[1] > 12) {
+            Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "You don't have enough points!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void handleBuyButtonClick3 () {
-        if (score >= buildingUpgradeCosts[2]) {
-            score -= buildingUpgradeCosts[2];
+    private void handleBuyButtonClick3() {
+        int currLevel = buildingUpgradeLevels[2];
+        if (score >= buildingUpgradeCosts[currLevel + 21] && currLevel <= 6) {
+            score -= buildingUpgradeCosts[currLevel + 21];
 
-            if (buildingUpgradeLevels[2] == 1){
-                buildingUpgradeCosts[2] = 11000d;
-            } else if (buildingUpgradeLevels[2] == 2) {
-                buildingUpgradeCosts[2] = 55000d;
-            } else if (buildingUpgradeLevels[2] == 3) {
-                buildingUpgradeCosts[2] = 550000d;
-            } else if (buildingUpgradeLevels[2] == 4) {
-                buildingUpgradeCosts[2] = 55000000d;
-            } else if (buildingUpgradeLevels[2] == 5) {
-                buildingUpgradeCosts[2] = 5500000000d;
-            } else if (buildingUpgradeLevels[2] == 6) {
-                buildingUpgradeCosts[2] = 55000000000d;
-            } else if (buildingUpgradeLevels[2] == 7) {
-                buildingUpgradeCosts[2] = 55000000000000d;
-            }
+            buildingUpgradeMultipliers[2] *= 2;
+
             buildingUpgradeLevels[2] += 1;
-            buildingMultiplier[1] *= 2; // Double the multiplier
-
-            building3Upgrade.setText("West Multiplier (" + buildingMultiplier[2] + "x)");
-            buy3Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[2]));
-            points.setText("" + String.format("%.2f", score));
-            clickMultiplier.setText("" + String.format("%.2f", multiplier));
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
+            building3Upgrade.setText("West Dorms (" + buildingUpgradeLevels[2] + "x)");
+            if (buildingUpgradeLevels[2] == 7) {
+                buy3Upgrade.setText("MAX LVL");
+            } else {
+                buy3Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[2] + 21]));
+            }
+        } else if (buildingUpgradeLevels[2] > 6) {
+            Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "You don't have enough points!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void handleBuyButtonClick4 () {
-        if (score >= buildingUpgradeCosts[3]) {
-            score -= buildingUpgradeCosts[3];
+    private void handleBuyButtonClick4() {
+        int currLevel = buildingUpgradeLevels[3];
+        if (score >= buildingUpgradeCosts[currLevel + 28] && currLevel <= 6) {
+            score -= buildingUpgradeCosts[currLevel + 28];
 
-            if (buildingUpgradeLevels[3] == 1){
-                buildingUpgradeCosts[3] = 120000d;
-            } else if (buildingUpgradeLevels[3] == 2) {
-                buildingUpgradeCosts[3] = 600000d;
-            } else if (buildingUpgradeLevels[3] == 3) {
-                buildingUpgradeCosts[3] = 6000000d;
-            } else if (buildingUpgradeLevels[3] == 4) {
-                buildingUpgradeCosts[3] = 600000000d;
-            } else if (buildingUpgradeLevels[3] == 5) {
-                buildingUpgradeCosts[3] = 6000000000d;
-            } else if (buildingUpgradeLevels[3] == 6) {
-                buildingUpgradeCosts[3] = 6000000000000d;
-            } else if (buildingUpgradeLevels[3] == 7) {
-                buildingUpgradeCosts[3] = 6000000000000000d;
-            }
+            buildingUpgradeMultipliers[3] *= 2;
+
             buildingUpgradeLevels[3] += 1;
-            buildingMultiplier[2] *= 2; // Double the multiplier
-
-            building4Upgrade.setText("1019 Multiplier (" + buildingMultiplier[3] + "x)");
-            buy4Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[3]));
-            points.setText("" + String.format("%.2f", score));
-            clickMultiplier.setText("" + String.format("%.2f", multiplier));
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
+            building4Upgrade.setText("1019 Comm Ave (" + buildingUpgradeLevels[3] + "x)");
+            if (buildingUpgradeLevels[2] == 7) {
+                buy4Upgrade.setText("MAX LVL");
+            } else {
+                buy4Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[3] + 28]));
+            }
+        } else if (buildingUpgradeLevels[3] > 6) {
+            Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "You don't have enough points!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void handleBuyButtonClick5 () {
-        if (score >= buildingUpgradeCosts[4]) {
-            score -= buildingUpgradeCosts[4];
+    private void handleBuyButtonClick5() {
+        int currLevel = buildingUpgradeLevels[4];
+        if (score >= buildingUpgradeCosts[currLevel + 35] && currLevel <= 6) {
+            score -= buildingUpgradeCosts[currLevel + 35];
 
-            if (buildingUpgradeLevels[4] == 1){
-                buildingUpgradeCosts[4] = 1300000d;
-            } else if (buildingUpgradeLevels[4] == 2) {
-                buildingUpgradeCosts[4] = 6500000d;
-            } else if (buildingUpgradeLevels[4] == 3) {
-                buildingUpgradeCosts[4] = 65000000d;
-            } else if (buildingUpgradeLevels[4] == 4) {
-                buildingUpgradeCosts[4] = 6500000000d;
-            } else if (buildingUpgradeLevels[4] == 5) {
-                buildingUpgradeCosts[4] = 6500000000000d;
-            } else if (buildingUpgradeLevels[4] == 6) {
-                buildingUpgradeCosts[4] = 650000000000000d;
-            } else if (buildingUpgradeLevels[4] == 7) {
-                buildingUpgradeCosts[4] = 65000000000000000d;
-            }
+            buildingUpgradeMultipliers[4] *= 2;
+
             buildingUpgradeLevels[4] += 1;
-            buildingMultiplier[3] *= 2; // Double the multiplier
-
-            building5Upgrade.setText("Hojo Multiplier (" + buildingMultiplier[4] + "x)");
-            buy5Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[4]));
-            points.setText("" + String.format("%.2f", score));
-            clickMultiplier.setText("" + String.format("%.2f", multiplier));
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
+            building5Upgrade.setText("Hojo (" + buildingUpgradeLevels[4] + "x)");
+            if (buildingUpgradeLevels[4] == 7) {
+                buy5Upgrade.setText("MAX LVL");
+            } else {
+                buy5Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[4] + 35]));
+            }
+        } else if (buildingUpgradeLevels[4] > 6) {
+            Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "You don't have enough points!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void handleBuyButtonClick6 () {
-        if (score >= buildingUpgradeCosts[5]) {
-            score -= buildingUpgradeCosts[5];
+    private void handleBuyButtonClick6() {
+        int currLevel = buildingUpgradeLevels[5];
+        if (score >= buildingUpgradeCosts[currLevel + 42] && currLevel <= 6) {
+            score -= buildingUpgradeCosts[currLevel + 42];
 
-            if (buildingUpgradeLevels[5] == 1){
-                buildingUpgradeCosts[5] = 14000000d;
-            } else if (buildingUpgradeLevels[5] == 2) {
-                buildingUpgradeCosts[5] = 70000000d;
-            } else if (buildingUpgradeLevels[5] == 3) {
-                buildingUpgradeCosts[5] = 700000000d;
-            } else if (buildingUpgradeLevels[5] == 4) {
-                buildingUpgradeCosts[5] = 70000000000d;
-            } else if (buildingUpgradeLevels[5] == 5) {
-                buildingUpgradeCosts[5] = 7000000000000d;
-            } else if (buildingUpgradeLevels[5] == 6) {
-                buildingUpgradeCosts[5] = 700000000000000d;
-            } else if (buildingUpgradeLevels[5] == 7) {
-                buildingUpgradeCosts[5] = 700000000000000000d;
-            }
+            buildingUpgradeMultipliers[5] *= 2;
+
             buildingUpgradeLevels[5] += 1;
-            buildingMultiplier[4] *= 2; // Double the multiplier
-
-            building6Upgrade.setText("Kilachand Multiplier (" + buildingMultiplier[5] + "x)");
-            buy6Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[5]));
-            points.setText("" + String.format("%.2f", score));
-            clickMultiplier.setText("" + String.format("%.2f", multiplier));
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
+            building6Upgrade.setText("Kilachand (" + buildingUpgradeLevels[5] + "x)");
+            if (buildingUpgradeLevels[5] == 7) {
+                buy6Upgrade.setText("MAX LVL");
+            } else {
+                buy6Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[5] + 42]));
+            }
+        } else if (buildingUpgradeLevels[5] > 6) {
+            Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "You don't have enough points!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void handleBuyButtonClick7 () {
-        if (score >= buildingUpgradeCosts[6]) {
-            score -= buildingUpgradeCosts[6];
+    private void handleBuyButtonClick7() {
+        int currLevel = buildingUpgradeLevels[6];
+        if (score >= buildingUpgradeCosts[currLevel + 49] && currLevel <= 6) {
+            score -= buildingUpgradeCosts[currLevel + 49];
 
-            if (buildingUpgradeLevels[6] == 1){
-                buildingUpgradeCosts[6] = 200000000d;
-            } else if (buildingUpgradeLevels[6] == 2) {
-                buildingUpgradeCosts[6] = 1000000000d;
-            } else if (buildingUpgradeLevels[6] == 3) {
-                buildingUpgradeCosts[6] = 10000000000d;
-            } else if (buildingUpgradeLevels[6] == 4) {
-                buildingUpgradeCosts[6] = 1000000000000d;
-            } else if (buildingUpgradeLevels[6] == 5) {
-                buildingUpgradeCosts[6] = 100000000000000d;
-            } else if (buildingUpgradeLevels[6] == 6) {
-                buildingUpgradeCosts[6] = 10000000000000000d;
-            } else if (buildingUpgradeLevels[6] == 7) {
-                buildingUpgradeCosts[6] = 10000000000000000000d;
-            }
+            buildingUpgradeMultipliers[6] *= 2;
+
             buildingUpgradeLevels[6] += 1;
-            buildingMultiplier[5] *= 2; // Double the multiplier
-
-            building7Upgrade.setText("Myles Multiplier (" + buildingMultiplier[6] + "x)");
-            buy7Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[6]));
-            points.setText("" + String.format("%.2f", score));
-            clickMultiplier.setText("" + String.format("%.2f", multiplier));
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
+            building7Upgrade.setText("Myles Standish (" + buildingUpgradeLevels[6] + "x)");
+            if (buildingUpgradeLevels[6] == 7) {
+                buy7Upgrade.setText("MAX LVL");
+            } else {
+                buy7Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[6] + 49]));
+            }
+        } else if (buildingUpgradeLevels[6] > 6) {
+            Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "You don't have enough points!", Toast.LENGTH_SHORT).show();
         }
     }
 
 
-    private void handleBuyButtonClick8 () {
-        if (score >= buildingUpgradeCosts[7]) {
-            score -= buildingUpgradeCosts[7];
+    private void handleBuyButtonClick8() {
+        int currLevel = buildingUpgradeLevels[7];
+        if (score >= buildingUpgradeCosts[currLevel + 56] && currLevel <= 6) {
+            score -= buildingUpgradeCosts[currLevel + 56];
 
-            if (buildingUpgradeLevels[7] == 1){
-                buildingUpgradeCosts[7] = 33000000000d;
-            } else if (buildingUpgradeLevels[7] == 2) {
-                buildingUpgradeCosts[7] = 16500000000d;
-            } else if (buildingUpgradeLevels[7] == 3) {
-                buildingUpgradeCosts[7] = 165000000000d;
-            } else if (buildingUpgradeLevels[7] == 4) {
-                buildingUpgradeCosts[7] = 16500000000000d;
-            } else if (buildingUpgradeLevels[7] == 5) {
-                buildingUpgradeCosts[7] = 1650000000000000d;
-            } else if (buildingUpgradeLevels[7] == 6) {
-                buildingUpgradeCosts[7] = 165000000000000000d;
-            } else if (buildingUpgradeLevels[7] == 7) {
-                buildingUpgradeCosts[7] = 165000000000000000000d;
-            }
+            buildingUpgradeMultipliers[7] *= 2;
+
             buildingUpgradeLevels[7] += 1;
-            buildingMultiplier[6] *= 2; // Double the multiplier
-
-            building8Upgrade.setText("Stuvi 1 Multiplier (" + buildingMultiplier[7] + "x)");
-            buy8Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[7]));
-            points.setText("" + String.format("%.2f", score));
-            clickMultiplier.setText("" + String.format("%.2f", multiplier));
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
+            building8Upgrade.setText("Stuvi 1 (" + buildingUpgradeLevels[7] + "x)");
+            if (buildingUpgradeLevels[7] == 7) {
+                buy8Upgrade.setText("MAX LVL");
+            } else {
+                buy8Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[7] + 56]));
+            }
+        } else if (buildingUpgradeLevels[7] > 6) {
+            Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "You don't have enough points!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void handleBuyButtonClick9 () {
-        if (score >= buildingUpgradeCosts[8]) {
-            score -= buildingUpgradeCosts[8];
+    private void handleBuyButtonClick9() {
+        int currLevel = buildingUpgradeLevels[8];
+        if (score >= buildingUpgradeCosts[currLevel + 63] && currLevel <= 6) {
+            score -= buildingUpgradeCosts[currLevel + 63];
 
-            if (buildingUpgradeLevels[8] == 1){
-                buildingUpgradeCosts[8] = 51000000000d;
-            } else if (buildingUpgradeLevels[8] == 2) {
-                buildingUpgradeCosts[8] = 255000000000d;
-            } else if (buildingUpgradeLevels[8] == 3) {
-                buildingUpgradeCosts[8] = 2550000000000d;
-            } else if (buildingUpgradeLevels[8] == 4) {
-                buildingUpgradeCosts[8] = 255000000000000d;
-            } else if (buildingUpgradeLevels[8] == 5) {
-                buildingUpgradeCosts[8] = 25500000000000000d;
-            } else if (buildingUpgradeLevels[8] == 6) {
-                buildingUpgradeCosts[8] = 2550000000000000000d;
-            } else if (buildingUpgradeLevels[8] == 7) {
-                buildingUpgradeCosts[8] = 2550000000000000000000d;
-            }
+            buildingUpgradeMultipliers[8] *= 2;
+
             buildingUpgradeLevels[8] += 1;
-            buildingMultiplier[7] *= 2; // Double the multiplier
-
-            building9Upgrade.setText("Stuvi 2 Multiplier (" + buildingMultiplier[8] + "x)");
-            buy9Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[8]));
-            points.setText("" + String.format("%.2f", score));
-            clickMultiplier.setText("" + String.format("%.2f", multiplier));
-        } else {
-            Toast.makeText(this, "You don't have enough points!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void handleBuyButtonClick10 () {
-        if (score >= buildingUpgradeCosts[9]) {
-            score -= buildingUpgradeCosts[9];
-
-            if (buildingUpgradeLevels[9] == 1){
-                buildingUpgradeCosts[9] = 750000000000d;
-            } else if (buildingUpgradeLevels[9] == 2) {
-                buildingUpgradeCosts[9] = 3750000000d;
-            } else if (buildingUpgradeLevels[9] == 3) {
-                buildingUpgradeCosts[9] = 37500000000d;
-            } else if (buildingUpgradeLevels[9] == 4) {
-                buildingUpgradeCosts[9] = 3750000000000d;
-            } else if (buildingUpgradeLevels[9] == 5) {
-                buildingUpgradeCosts[9] = 375000000000000d;
-            } else if (buildingUpgradeLevels[9] == 6) {
-                buildingUpgradeCosts[9] = 37500000000000000d;
-            } else if (buildingUpgradeLevels[9] == 7) {
-                buildingUpgradeCosts[9] = 37500000000000000000d;
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
+            building9Upgrade.setText("Stuvi 2 (" + buildingUpgradeLevels[8] + "x)");
+            if (buildingUpgradeLevels[8] == 7) {
+                buy9Upgrade.setText("MAX LVL");
+            } else {
+                buy9Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[8] + 63]));
             }
-            buildingUpgradeLevels[9] += 1;
-            buildingMultiplier[8] *= 2; // Double the multiplier
-
-            building10Upgrade.setText("Off Campus Multiplier (" + buildingMultiplier[9] + "x)");
-            buy10Upgrade.setText("" + String.format("%.2f", buildingUpgradeCosts[9]));
-            points.setText("" + String.format("%.2f", score));
-            clickMultiplier.setText("" + String.format("%.2f", multiplier));
+        } else if (buildingUpgradeLevels[8] > 6) {
+            Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "You don't have enough points!", Toast.LENGTH_SHORT).show();
         }
     }
 
+    private void handleBuyButtonClick10() {
+        int currLevel = buildingUpgradeLevels[9];
+        if (score >= buildingUpgradeCosts[currLevel + 70] && currLevel <= 6) {
+            score -= buildingUpgradeCosts[currLevel + 70];
 
+            buildingUpgradeMultipliers[9] *= 2;
 
-
-
+            buildingUpgradeLevels[9] += 1;
+            //points.setText(String.format("%.2f", score) + " Dining Points"); //replaced with new formatting
+            points.setText(formatNumber(score) + " Dining Points");
+            building10Upgrade.setText("Off Campus (" + buildingUpgradeLevels[9] + "x)");
+            if (buildingUpgradeLevels[9] == 7) {
+                buy10Upgrade.setText("MAX LVL");
+            } else {
+                buy10Upgrade.setText("" + formatNumber(buildingUpgradeCosts[buildingUpgradeLevels[9] + 70]));
+            }
+        } else if (buildingUpgradeLevels[9] > 6) {
+            Toast.makeText(this, "Max level achieved!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "You don't have enough points!", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
 
