@@ -164,7 +164,7 @@ public class MainActivity extends Activity {
 
             // Update UI or perform any other actions with the updated data
             updateScore(score);
-            clicksPerSecond.setText("Clicks per Second: " + String.format("%.2f", cps));
+            clicksPerSecond.setText("Clicks per Second: " + formatNumber(cps));
         } else if (requestCode == REQUEST_CODE_CLICKER_SHOP && resultCode == Activity.RESULT_OK) {
             score = data.getDoubleExtra(TAG_SCORE, 0);
             cost = data.getDoubleExtra(TAG_COST, 100);
@@ -180,8 +180,8 @@ public class MainActivity extends Activity {
             }
 
             updateScore(score);
-            clicksPerSecond.setText("Clicks per Second: " + String.format("%.2f", cps));
-            clickMultiplier.setText("Click Multiplier: " + String.format("%.2f", multiplier) + "x");
+            clicksPerSecond.setText("Clicks per Second: " + formatNumber(cps));
+            clickMultiplier.setText("Click Multiplier: " + formatNumber(multiplier) + "x");
         }
     }
 
