@@ -4,9 +4,9 @@
 
 If you save the files onto your own GitHub version control:
 In order to run the application one must download all of the files through the "get from VCS" within the android studio application. Once the all the files have be downloaded and incorporated into a file then opened in android studio. Open a virtual android phone and run the application on the android studio.
-
-
-Else:
+ 
+ 
+If you are downloading directly from this repository:
 Downloading the File:
   Once you find the repository, navigate to the file you want to download.
   Click on the file to view it.
