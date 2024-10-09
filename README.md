@@ -23,7 +23,6 @@
    - In Android Studio, open an Android emulator or connect an Android device.
    - Click the green "Run" button in the toolbar, or press `Shift + F10` to build and run the project.
 
----
 
 ### Option 2: Downloading Files Directly from This Repository
 
@@ -45,7 +44,7 @@
    - Choose your deployment target: either an Android emulator or a connected Android device.
    - Wait for the project to build and launch.
 
----
+
 
 ### Troubleshooting
 
@@ -55,8 +54,8 @@
 
 
 
----
 
+  
 ## Project Background and Description
 
 <p align="center">
@@ -73,7 +72,7 @@ Rub Rhett is a clicker-style game developed for Android using Java, featuring a 
   
 The synergy between the UI, game logic, and data storage ensures a seamless player experience, with real-time updates reflected in the interface.
 
----
+
 
 ## Overview of the Application:
 Rub Rhett is a campus-themed clicker game for Boston University (BU) students, modeled after the popular "Cookie Clicker" game. Players click on an image of Rhett, BU's mascot, to earn dining points, which they can use to buy virtual buildings, upgrades, and students that passively generate more points.
@@ -86,7 +85,7 @@ Though designed for BU students, Rub Rhett's simplicity and BU-centric theme als
 ### Cookie Clicker Inspiration:
 Rub Rhett draws heavily from Cookie Clicker's addictive incremental gameplay but distinguishes itself with BU-specific elements. The game blends familiar clicker mechanics with campus life, making it a personalized experience for BU's community.
 
----
+
 
 ## Description of Each Component:
 
@@ -110,7 +109,45 @@ Rub Rhett draws heavily from Cookie Clicker's addictive incremental gameplay but
 ### ClickerShop.xml & Shop.xml:
 - These child files define the UI for the shop pages, following the same constraint-based layout as ActivityMain.xml. They provide customization for shop-related UI elements.
 
----
 
-## Appendix
-- [Calculations/Backend Doc](https://docs.google.com/document/d/1VvMuoC1vX2b0lufa7Ic7vPDGehbZze_7CSz67wWptsk/edit?usp=sharing)
+
+## Shop Purchase Value Increases
+
+In this clicker-style game, each shop purchase (buildings or upgrades) increases either the points per second (CpS) or the value gained from clicks. Below is an explanation of the value increases associated with each shop purchase.
+
+### Price Increase Formula
+Every time a player purchases a building or upgrade, the cost of that item increases for the next purchase. The price increase follows the formula:
+
+`Price of Next Purchase (N+1) = Previous Price * 1.15`
+
+
+This means that with each additional purchase, the cost increases by 15%.
+
+### Building Value Increases
+Each building generates points per second (CpS) based on the number of buildings owned. The table below outlines the base cost and CpS value increase for each building.
+
+| **Building**        | **Base Cost**       | **CpS Formula**                  | **CpS Value Increase**          |
+|---------------------|---------------------|----------------------------------|---------------------------------|
+| **Warren Towers**    | 100 points          | `CpS = 1 * (Number of Towers)`   | +1 point per second per tower   |
+| **West Dorms**       | 1,100 points        | `CpS = 8 * (Number of Dorms)`    | +8 points per second per dorm   |
+| **1019 Dorm**        | 12,000 points       | `CpS = 47 * (Number of Dorms)`   | +47 points per second per dorm  |
+| **Hojo Dorm**        | 130,000 points      | `CpS = 260 * (Number of Dorms)`  | +260 points per second per dorm |
+| **Kilachand Dorm**   | 1.4 million points  | `CpS = 1,400 * (Number of Dorms)`| +1,400 points per second per dorm|
+| **Miles Standish**   | 20 million points   | `CpS = 7,800 * (Number of Dorms)`| +7,800 points per second per dorm|
+| **Stuvi 1**          | 330 million points  | `CpS = 44,000 * (Number of Dorms)`| +44,000 points per second per dorm|
+| **Stuvi 2**          | 5.1 billion points  | `CpS = 260,000 * (Number of Dorms)`| +260,000 points per second per dorm|
+| **Off Campus**       | 75 billion points   | `CpS = 1,600,000 * (Number of Buildings)`| +1.6 million points per second per building|
+
+### Bulk Purchases (Buy 10, Buy 100)
+When buying multiple buildings at once, the cumulative price follows the formula:
+
+`Cumulative Price = Σ(Base Cost * (1.15^i)), where i = 0 to (b-1)`
+
+
+This formula calculates the total cost for purchasing `b` buildings at once, with the cost of each subsequent building increasing by 15%.
+
+### Upgrade Impact on Clicks
+Some upgrades specifically increase the number of points gained per click. For example, upgrades like Rhett pats or click multipliers double or further enhance the points gained with each click. These click multipliers are managed by the `multiplier` variable in the game.
+
+
+
